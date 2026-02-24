@@ -1,0 +1,1223 @@
+/**
+ * Admin Styles for F Insights
+ * v1.8.0 — Tab navigation refactor
+ */
+
+/* ── Page wrapper ────────────────────────────────────────────────────────── */
+.fi-admin-wrap {
+    margin: 20px 20px 0 0;
+    max-width: 1600px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Override WordPress core .wrap max-width when used alongside fi-admin-wrap */
+.wrap.fi-admin-wrap {
+    max-width: 1600px !important;
+}
+
+/* ── Tab navigation — mirrors WP core .nav-tab-wrapper pattern ───────────── */
+.fi-tab-nav {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 16px 0 0 0;
+    padding: 0;
+    border-bottom: 1px solid #c3c4c7;
+    line-height: inherit;
+}
+
+.fi-tab-link {
+    display: inline-block;
+    padding: 5px 14px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #50575e;
+    text-decoration: none;
+    background: #dcdcde;
+    border: 1px solid #c3c4c7;
+    border-bottom: none;
+    margin: 5px 3px 0 0;
+    border-radius: 3px 3px 0 0;
+    cursor: pointer;
+    position: relative;
+    /* Lift active tab flush with the border-bottom */
+    bottom: -1px;
+    transition: background 0.1s, color 0.1s;
+}
+
+.fi-tab-link:hover {
+    color: #1d2327;
+    background: #f0f0f1;
+    text-decoration: none;
+}
+
+.fi-tab-link.fi-tab-active {
+    background: #f0f0f1;
+    color: #1d2327;
+    font-weight: 600;
+    border-bottom: 1px solid #f0f0f1;
+}
+
+.fi-tab-lock {
+    font-size: 11px;
+    opacity: 0.6;
+    margin-left: 2px;
+}
+
+/* ── Tab panel content area ──────────────────────────────────────────────── */
+.fi-tab-panel {
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-top: none;
+    padding: 24px;
+    margin-bottom: 20px;
+}
+
+/* ── Tab form footer (Save button row) ───────────────────────────────────── */
+.fi-tab-form-footer {
+    padding-top: 20px;
+    border-top: 1px solid #e5e7eb;
+    margin-top: 8px;
+}
+
+/* ── Settings sections inside tabs ──────────────────────────────────────── */
+.fi-settings-section {
+    margin-bottom: 28px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.fi-settings-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.fi-settings-section h2 {
+    margin-top: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1d2327;
+}
+
+/* ── Shortcode box ───────────────────────────────────────────────────────── */
+.fi-shortcode-box {
+    background: #f6f7f7;
+    border: 1px solid #c3c4c7;
+    padding: 12px 16px;
+    margin: 12px 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.fi-shortcode-box code {
+    font-size: 14px;
+    font-weight: 600;
+    color: #0073aa;
+    background: none;
+}
+
+.fi-copy-shortcode {
+    margin-left: 4px;
+}
+
+/* ── Quick-start list ────────────────────────────────────────────────────── */
+.fi-quick-start ol {
+    margin: 8px 0 0 20px;
+    line-height: 1.8;
+    font-size: 13px;
+    color: #50575e;
+}
+
+/* ── System status list ──────────────────────────────────────────────────── */
+.fi-system-status {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0;
+}
+
+.fi-system-status li {
+    padding: 6px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.fi-system-status li:last-child {
+    border-bottom: none;
+}
+
+.fi-system-status .dashicons {
+    width: 18px;
+    height: 18px;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.fi-system-status .dashicons-yes-alt { color: #00a32a; }
+.fi-system-status .dashicons-warning { color: #d63638; }
+.fi-system-status .dashicons-info    { color: #0073aa; }
+.fi-system-status .dashicons-lock    { color: #00a32a; }
+
+/* ── Admin scanner wrapper (Shortcode tab) ───────────────────────────────── */
+.fi-admin-scanner-wrap {
+    margin-top: 16px;
+    border: 1px solid #c3c4c7;
+    padding: 20px;
+    background: #fafafa;
+}
+
+/* Analytics Dashboard */
+.fi-analytics-container {
+    background: transparent;
+}
+
+.fi-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.fi-stat-card {
+    background: #fff !important;
+    color: #1d2327 !important;
+    padding: 16px 18px;
+    border: 1px solid #c3c4c7;
+    border-left: 4px solid #0073aa;
+    border-radius: 0 3px 3px 0;
+}
+
+.fi-stat-card h3 {
+    margin: 0 0 6px 0;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #646970 !important;
+}
+
+.fi-stat-number {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0;
+    color: #1d2327 !important;
+}
+
+.fi-stat-highlight .fi-stat-number,
+.fi-stat-number.fi-stat-highlight { color: #d63638 !important; }
+
+.fi-stat-success .fi-stat-number,
+.fi-stat-number.fi-stat-success  { color: #00a32a !important; }
+
+.fi-analytics-section {
+    margin-bottom: 25px;
+}
+
+.fi-analytics-section h2 {
+    margin-top: 0;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.fi-score-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    font-weight: 700;
+    font-size: 13px;
+}
+
+.fi-score-badge.fi-score-good {
+    background: #dcfce7;
+    color: #10b981;
+    border: 1px solid #10b981;
+}
+
+.fi-score-badge.fi-score-warning {
+    background: #fef3c7;
+    color: #f59e0b;
+    border: 1px solid #f59e0b;
+}
+
+.fi-score-badge.fi-score-alert {
+    background: #fee2e2;
+    color: #ef4444;
+    border: 1px solid #ef4444;
+}
+
+/* ── Brand Customization Panel (v1.5.0) ─────────────────────────────────── */
+
+.fi-brand-row {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+/* Color Picker Group */
+.fi-color-pickers {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 220px;
+}
+
+.fi-color-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.fi-color-row label {
+    font-size: 13px;
+    color: #3c434a;
+    width: 120px;
+    flex-shrink: 0;
+}
+
+.fi-color-swatch {
+    width: 36px;
+    height: 36px;
+    padding: 2px;
+    border: 2px solid #000;
+    border-radius: 0;
+    background: none;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.fi-color-swatch::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+.fi-color-swatch::-webkit-color-swatch {
+    border: none;
+}
+
+.fi-hex-input {
+    width: 80px;
+    font-size: 12px;
+    font-family: monospace;
+    padding: 4px 6px;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #000;
+    text-transform: uppercase;
+}
+
+.fi-hex-input:focus {
+    outline: none;
+    border-color: #000;
+}
+
+.fi-detect-btn {
+    margin-top: 6px;
+    font-size: 12px !important;
+    padding: 4px 10px !important;
+    height: auto !important;
+    line-height: 1.6 !important;
+}
+
+/* Live Preview Panel */
+.fi-brand-preview {
+    flex: 1;
+    min-width: 280px;
+    border: 2px solid #000;
+    background: #fafafa;
+}
+
+.fi-brand-preview-header {
+    background: #000;
+    color: #fff;
+    padding: 8px 14px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fi-brand-preview-header .fi-preview-live-dot {
+    width: 7px;
+    height: 7px;
+    background: #10b981;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+    animation: fi-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes fi-pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.3; }
+}
+
+.fi-brand-preview-body {
+    padding: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 13px;
+}
+
+/* Preview: Search bar mock */
+.fi-prev-search {
+    display: flex;
+    margin-bottom: 14px;
+    border: 2px solid #000;
+}
+
+.fi-prev-search-input {
+    flex: 1;
+    padding: 8px 10px;
+    font-size: 12px;
+    color: #999;
+    background: #fff;
+    border: none;
+    pointer-events: none;
+}
+
+.fi-prev-search-btn {
+    padding: 8px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    border: none;
+    cursor: default;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+}
+
+/* Preview: Score row */
+.fi-prev-scores {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.fi-prev-score-chip {
+    flex: 1;
+    padding: 8px 6px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+    transition: background 0.2s;
+}
+
+.fi-prev-score-chip small {
+    display: block;
+    font-weight: 400;
+    font-size: 10px;
+    opacity: 0.85;
+    margin-top: 2px;
+}
+
+.fi-prev-score-secondary {
+    background: #777 !important;
+}
+
+/* Preview: Result card */
+.fi-prev-card {
+    border: 2px solid #000;
+    padding: 10px 12px;
+    background: #fff;
+    margin-bottom: 10px;
+}
+
+.fi-prev-card-title {
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: #000;
+}
+
+.fi-prev-card-meta {
+    font-size: 11px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.fi-prev-card-accent {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+    padding: 2px 8px;
+    transition: background 0.2s;
+}
+
+/* Preview: CTA button */
+.fi-prev-cta {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+    color: #fff;
+    border: none;
+    cursor: default;
+    transition: background 0.2s;
+    margin-top: 4px;
+}
+
+/* Font preview label */
+.fi-prev-font-label {
+    font-size: 10px;
+    color: #999;
+    text-align: right;
+    margin-top: 8px;
+}
+
+/* Color description */
+.fi-brand-color-desc {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* ── Analytics container ────────────────────────────────────────────────── *//* ── Font Size Controls in Brand Preview (v1.5.2) ───────────────────────── */
+
+.fi-brand-preview {
+    display: flex;
+    flex-direction: column;
+}
+
+.fi-preview-controls {
+    background: #f5f5f5;
+    border-top: 1px solid #ddd;
+    padding: 10px 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+}
+
+.fi-preview-controls label {
+    font-size: 11px;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap;
+}
+
+.fi-size-slider {
+    width: 80px;
+    accent-color: #000;
+    cursor: pointer;
+}
+
+.fi-size-value {
+    font-size: 11px;
+    font-weight: 700;
+    color: #000;
+    min-width: 28px;
+    text-align: right;
+}
+
+.fi-preview-controls-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #999;
+    width: 100%;
+    margin-bottom: -6px;
+}
+
+/* ── Analytics IP Blacklist Section (v1.5.3) ─────────────────────────────── */
+
+.fi-ip-detect-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.fi-detected-ip-display {
+    display: inline-block;
+    background: #f5f5f5;
+    border: 1px solid #ccc;
+    padding: 5px 12px;
+    font-size: 13px;
+    font-family: monospace;
+    color: #000;
+    min-width: 140px;
+    text-align: center;
+}
+
+.fi-ip-added-notice {
+    color: #00a32a;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.fi-ip-blacklist-textarea {
+    font-family: monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    border: 1px solid #ccc;
+}
+
+.fi-ip-blacklist-textarea:focus {
+    border-color: #000;
+    box-shadow: 0 0 0 1px #000;
+    outline: none;
+}
+
+/* ── Lead Cards (v1.6.0) ───────────────────────────────────────────────────── */
+
+.fi-leads-urgent {
+    background: #fffbeb;
+    border: 2px solid #f59e0b;
+    padding: 20px;
+}
+
+.fi-leads-subtitle {
+    color: #666;
+    font-size: 14px;
+    margin: 0 0 15px 0;
+}
+
+.fi-lead-card {
+    background: #fff;
+    border: 2px solid #000;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.fi-lead-card:last-child {
+    margin-bottom: 0;
+}
+
+.fi-lead-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.fi-lead-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.fi-lead-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.fi-lead-contact {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.fi-lead-contact strong {
+    min-width: 120px;
+}
+
+.fi-lead-contact a {
+    color: #0073aa;
+    text-decoration: none;
+}
+
+.fi-lead-contact a:hover {
+    text-decoration: underline;
+}
+
+.fi-lead-meta {
+    display: flex;
+    gap: 20px;
+    padding: 10px 0;
+    font-size: 13px;
+    color: #666;
+}
+
+.fi-lead-pain-points {
+    background: #fff;
+    border-left: 3px solid #dc2626;
+    padding: 12px 15px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.fi-lead-pain-points strong {
+    display: block;
+    margin-bottom: 8px;
+    color: #dc2626;
+}
+
+.fi-lead-pain-points ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.fi-lead-pain-points li {
+    margin: 5px 0;
+    line-height: 1.5;
+}
+
+.fi-status-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 3px;
+    border: 1px solid;
+}
+
+.fi-status-new {
+    background: #fef3c7;
+    border-color: #f59e0b;
+    color: #92400e;
+}
+
+.fi-status-contacted {
+    background: #dbeafe;
+    border-color: #3b82f6;
+    color: #1e40af;
+}
+
+.fi-status-qualified {
+    background: #dcfce7;
+    border-color: #10b981;
+    color: #065f46;
+}
+
+.fi-status-closed {
+    background: #d1fae5;
+    border-color: #059669;
+    color: #064e3b;
+}
+
+.fi-status-lost {
+    background: #f3f4f6;
+    border-color: #9ca3af;
+    color: #4b5563;
+}
+
+.fi-stat-label {
+    font-size: 12px;
+    color: #646970;
+    margin-top: 5px;
+}
+
+/* ── Lead Management Interactive Elements (v1.6.0) ──────────────────────── */
+
+.fi-status-select {
+    width: 100%;
+    padding: 6px 8px;
+    border: 2px solid #ddd;
+    border-radius: 3px;
+    font-size: 13px;
+    font-weight: 600;
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.fi-status-select:hover {
+    border-color: #0073aa;
+}
+
+.fi-status-select:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.fi-notes-field {
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 13px;
+    font-family: inherit;
+    resize: vertical;
+    transition: border-color 0.2s;
+}
+
+.fi-notes-field:focus {
+    border-color: #0073aa;
+    outline: none;
+    box-shadow: 0 0 0 1px #0073aa;
+}
+
+
+.fi-inline-success {
+    display: inline-block;
+    margin-left: 8px;
+    color: #10b981;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.fi-status-updated {
+    background-color: #f0fdf4 !important;
+    transition: background-color 0.3s;
+}
+
+.fi-leads-table th {
+    font-weight: 700;
+    background: #f9fafb;
+}
+
+/* Sortable column headers */
+.fi-leads-table th.fi-sortable-col {
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+}
+.fi-leads-table th.fi-sortable-col:hover {
+    background: #eef0f2;
+}
+.fi-leads-table th.fi-sort-active {
+    background: #e8f0fe;
+    color: #1a56db;
+}
+.fi-sort-indicator::after {
+    content: ' ⇅';
+    font-size: 11px;
+    opacity: 0.4;
+}
+.fi-sort-active.fi-sort-asc  .fi-sort-indicator::after { content: ' ↑'; opacity: 1; }
+.fi-sort-active.fi-sort-desc .fi-sort-indicator::after { content: ' ↓'; opacity: 1; }
+
+.fi-leads-table td {
+    vertical-align: top;
+    padding: 12px 10px;
+}
+
+/* Mobile responsive */
+@media (max-width: 1400px) {
+    .fi-leads-table th,
+    .fi-leads-table td {
+        font-size: 12px;
+        padding: 10px 8px;
+    }
+    
+    .fi-notes-field {
+        font-size: 12px;
+    }
+    
+    .fi-status-select {
+        font-size: 12px;
+    }
+}
+
+/* ── Report Viewer Modal (v2.0.2) ───────────────────────────────────────── */
+
+.fi-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100000;
+}
+
+.fi-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.fi-modal-content {
+    position: relative;
+    max-width: 900px;
+    max-height: 90vh;
+    margin: 5vh auto;
+    background: #fff;
+    border: 2px solid #000;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Wider variant for the report viewer */
+.fi-modal-content--report {
+    max-width: 1100px;
+}
+
+.fi-modal-header {
+    padding: 16px 24px;
+    border-bottom: 2px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.fi-modal-header h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.fi-modal-close {
+    background: none;
+    border: none;
+    font-size: 32px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-left: 12px;
+}
+
+.fi-modal-close:hover {
+    color: #dc2626;
+}
+
+.fi-modal-body {
+    padding: 0;
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* ── Report toolbar (date + copy button) ─────────────────────────────────── */
+.fi-report-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    background: #f9fafb;
+    border-bottom: 1px solid #e5e7eb;
+    flex-shrink: 0;
+}
+
+.fi-report-meta {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.fi-copy-report-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px !important;
+    padding: 6px 14px !important;
+    height: auto !important;
+    line-height: 1.5 !important;
+    transition: background 0.2s !important;
+}
+
+.fi-copy-report-btn.fi-copy-success {
+    background: #00a32a !important;
+    border-color: #00a32a !important;
+}
+
+/* ── Report iframe ───────────────────────────────────────────────────────── */
+.fi-report-iframe {
+    display: block;
+    width: 100%;
+    border: none;
+    min-height: 500px;
+}
+
+.fi-loading {
+    text-align: center;
+    padding: 40px;
+    color: #6b7280;
+}
+
+.fi-view-report {
+    margin-top: 5px;
+}
+/* ── Data Management tab — danger colouring ─────────────────────────────── */
+.fi-tab-danger {
+    color: #b91c1c;
+}
+.fi-tab-danger:hover {
+    color: #991b1b;
+    background: #fff1f2;
+}
+.fi-tab-danger.fi-tab-active {
+    color: #991b1b;
+    background: #fff1f2;
+    border-bottom-color: #fff1f2;
+}
+
+/* ── White-label upsell pillar grid — responsive collapse ───────────────── */
+@media (max-width: 700px) {
+    .fi-ghost-lock [style*="grid-template-columns:repeat(3"] {
+        display: block !important;
+    }
+    .fi-ghost-lock [style*="grid-template-columns:repeat(3"] > div {
+        border-right: none !important;
+        border-bottom: 2px solid #000;
+    }
+    .fi-ghost-lock [style*="grid-template-columns:repeat(3"] > div:last-child {
+        border-bottom: none;
+    }
+}
+
+/* ── API key status badge (item 10) ────────────────────────────────────── */
+.fi-key-status {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 600;
+    vertical-align: middle;
+}
+.fi-key-configured {
+    background: #d1fae5;
+    color: #065f46;
+    border: 1px solid #6ee7b7;
+}
+.fi-key-missing {
+    background: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fcd34d;
+}
+
+/* ── Screen-reader-only utility (items 8, 9) ────────────────────────────── */
+.screen-reader-text {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    word-wrap: normal !important;
+}
+
+/* ── Log filter buttons (item 7) ────────────────────────────────────────── */
+.fi-log-filter {
+    opacity: 0.6;
+    transition: opacity 0.15s;
+}
+.fi-log-filter:hover,
+.fi-log-filter.fi-log-filter-active {
+    opacity: 1;
+    font-weight: 600;
+}
+
+/* Log auto-scroll toggle */
+#fi-log-scroll-toggle {
+    font-size: 11px;
+    opacity: 0.6;
+}
+#fi-log-scroll-toggle.fi-log-scroll-active {
+    opacity: 1;
+    font-weight: 600;
+    border-color: #2271b1;
+    color: #2271b1;
+}
+/* ── Divi-style icon picker (White-Label tab) ────────────────────────────── */
+.fi-icon-picker-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Trigger button */
+.fi-icon-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 10px 5px 8px;
+    height: 34px;
+    background: #fff;
+    border: 1px solid #8c8f94;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #1d2327;
+    line-height: 1;
+    white-space: nowrap;
+    min-width: 180px;
+    text-align: left;
+}
+.fi-icon-trigger:hover {
+    border-color: #2271b1;
+    color: #2271b1;
+}
+.fi-icon-trigger-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    font-size: 15px;
+    color: #50575e;
+    flex-shrink: 0;
+}
+.fi-icon-trigger-label {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.fi-icon-trigger-caret {
+    margin-left: auto;
+    flex-shrink: 0;
+    color: #8c8f94;
+    transition: transform 0.15s;
+}
+.fi-icon-picker-wrap.fi-picker-open .fi-icon-trigger-caret {
+    transform: rotate(180deg);
+}
+.fi-icon-picker-wrap.fi-picker-open .fi-icon-trigger {
+    border-color: #2271b1;
+    box-shadow: 0 0 0 1px #2271b1;
+}
+
+/* Clear button */
+.fi-icon-clear {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #8c8f94;
+    transition: color 0.1s, border-color 0.1s;
+}
+.fi-icon-clear:hover {
+    color: #d63638;
+    border-color: #d63638;
+}
+
+/* Popover panel */
+.fi-icon-popover {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    z-index: 9999;
+    width: 340px;
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    overflow: hidden;
+}
+.fi-icon-popover[hidden] {
+    display: none;
+}
+
+/* Search bar inside popover */
+.fi-icon-popover-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-bottom: 1px solid #e2e4e7;
+    background: #f9f9f9;
+}
+.fi-icon-popover-search svg {
+    flex-shrink: 0;
+    color: #8c8f94;
+}
+.fi-icon-search-input {
+    flex: 1;
+    border: none !important;
+    outline: none !important;
+    background: transparent !important;
+    font-size: 13px !important;
+    color: #1d2327 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    min-height: auto !important;
+}
+
+/* Icon grid */
+.fi-icon-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2px;
+    padding: 8px;
+    max-height: 260px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+/* Each icon cell */
+.fi-icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 4px;
+    padding: 8px 4px 6px;
+    background: transparent;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.1s, border-color 0.1s;
+    min-height: 58px;
+}
+.fi-icon-item i {
+    font-size: 18px;
+    color: #1d2327;
+    line-height: 1;
+}
+.fi-icon-item span {
+    font-size: 9px;
+    line-height: 1.2;
+    color: #6b7280;
+    text-align: center;
+    word-break: break-word;
+    hyphens: auto;
+    max-width: 48px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.fi-icon-item:hover {
+    background: #f0f6fc;
+    border-color: #72aee6;
+}
+.fi-icon-item:hover i { color: #2271b1; }
+.fi-icon-item-selected {
+    background: #e8f1fb;
+    border-color: #2271b1;
+}
+.fi-icon-item-selected i { color: #2271b1; }
+.fi-icon-item-selected span { color: #2271b1; font-weight: 600; }
+
+/* Hidden by search filter */
+.fi-icon-item[hidden] { display: none; }
+
+/* Empty search state */
+.fi-icon-no-results {
+    grid-column: 1 / -1;
+    padding: 20px;
+    text-align: center;
+    color: #8c8f94;
+    font-size: 13px;
+}
