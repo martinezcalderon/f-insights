@@ -245,6 +245,192 @@ class FI_Batch_Scanner {
             'claude-opus-4-20250514'    => '$0.12–$0.25',
         );
         $cost_hint    = $cost_map[ $scan_model ] ?? '~$0.03–$0.06';
+
+        // ── Load labels from the single-source-of-truth category library ────────
+        $category_map = require plugin_dir_path( __FILE__ ) . 'category-map.php';
+
+        // ── Industry groupings: keys must exist in category-map.php ───────────
+        $industry_groups = array(
+            'Food & Beverage' => array(
+                'american_restaurant', 'burger_restaurant', 'bbq_restaurant', 'southern_restaurant',
+                'tex_mex_restaurant', 'cajun_restaurant', 'diner', 'brunch_restaurant', 'steakhouse',
+                'seafood_restaurant', 'oyster_bar', 'lobster_shack', 'new_american_restaurant',
+                'farm_to_table_restaurant', 'mexican_restaurant', 'taqueria', 'argentinian_restaurant',
+                'brazilian_restaurant', 'churrascaria', 'colombian_restaurant', 'peruvian_restaurant',
+                'venezuelan_restaurant', 'cuban_restaurant', 'salvadoran_restaurant',
+                'caribbean_restaurant', 'haitian_restaurant', 'jamaican_restaurant',
+                'italian_restaurant', 'pizza_restaurant', 'french_restaurant', 'spanish_restaurant',
+                'tapas_restaurant', 'greek_restaurant', 'mediterranean_restaurant',
+                'portuguese_restaurant', 'german_restaurant', 'british_restaurant', 'irish_pub',
+                'polish_restaurant', 'turkish_restaurant', 'lebanese_restaurant', 'persian_restaurant',
+                'israeli_restaurant', 'moroccan_restaurant', 'egyptian_restaurant', 'afghan_restaurant',
+                'falafel_restaurant', 'kebab_restaurant', 'indian_restaurant', 'north_indian_restaurant',
+                'south_indian_restaurant', 'pakistani_restaurant', 'bangladeshi_restaurant',
+                'nepalese_restaurant', 'chinese_restaurant', 'cantonese_restaurant',
+                'szechuan_restaurant', 'dim_sum_restaurant', 'japanese_restaurant', 'sushi_restaurant',
+                'ramen_restaurant', 'izakaya', 'teppanyaki', 'korean_restaurant',
+                'korean_bbq_restaurant', 'mongolian_restaurant', 'taiwanese_restaurant',
+                'thai_restaurant', 'vietnamese_restaurant', 'pho_restaurant', 'filipino_restaurant',
+                'indonesian_restaurant', 'malaysian_restaurant', 'singaporean_restaurant',
+                'burmese_restaurant', 'cambodian_restaurant', 'ethiopian_restaurant',
+                'eritrean_restaurant', 'nigerian_restaurant', 'west_african_restaurant',
+                'east_african_restaurant', 'ghanaian_restaurant', 'vegetarian_restaurant',
+                'vegan_restaurant', 'raw_food_restaurant', 'gluten_free_restaurant', 'halal_restaurant',
+                'kosher_restaurant', 'buffet_restaurant', 'fondue_restaurant', 'hot_pot_restaurant',
+                'omakase_restaurant', 'fine_dining_restaurant', 'gastropub', 'supper_club',
+                'food_hall', 'ghost_kitchen', 'restaurant', 'cafe', 'specialty_coffee_shop',
+                'espresso_bar', 'bubble_tea_shop', 'tea_house', 'juice_bar', 'bakery', 'patisserie',
+                'bagel_shop', 'donut_shop', 'ice_cream_shop', 'gelato_shop', 'creperie',
+                'waffle_house', 'chocolate_shop', 'candy_store', 'popcorn_shop', 'bar', 'sports_bar',
+                'cocktail_bar', 'wine_bar', 'craft_beer_bar', 'dive_bar', 'night_club', 'rooftop_bar',
+                'brewery', 'winery', 'distillery', 'cidery', 'mead_hall', 'hookah_lounge',
+                'karaoke_bar', 'jazz_club', 'meal_takeaway', 'food_truck', 'hot_dog_stand',
+            ),
+            'Retail' => array(
+                'clothing_store', 'womens_clothing_store', 'mens_clothing_store',
+                'childrens_clothing_store', 'maternity_store', 'plus_size_clothing',
+                'activewear_store', 'swimwear_store', 'lingerie_store', 'formal_wear_store',
+                'bridal_shop', 'costume_shop', 'uniform_store', 'shoe_store', 'sneaker_store',
+                'boot_store', 'children_shoe_store', 'jewelry_store', 'fine_jewelry_store',
+                'costume_jewelry_store', 'watch_store', 'sunglasses_store', 'handbag_store',
+                'hat_store', 'thrift_store', 'consignment_shop', 'vintage_clothing_store', 'tailor',
+                'embroidery_shop', 'furniture_store', 'mattress_store', 'home_goods_store',
+                'kitchen_supply_store', 'bath_store', 'candle_store', 'lighting_store',
+                'flooring_store', 'wallpaper_store', 'hardware_store', 'appliance_store',
+                'garden_center', 'pool_supply_store', 'antique_shop', 'frame_shop', 'rug_store',
+                'electronics_store', 'computer_store', 'mobile_phone_store', 'camera_store',
+                'audio_store', 'video_game_store', 'drone_store', 'home_theater_store',
+                'telecom_store', 'book_store', 'comic_book_store', 'music_store', 'instrument_store',
+                'record_store', 'toy_store', 'hobby_store', 'board_game_store', 'craft_store',
+                'yarn_store', 'art_supply_store', 'sporting_goods_store', 'golf_store',
+                'ski_snowboard_shop', 'surf_shop', 'outdoor_store', 'bicycle_store',
+                'fishing_tackle_shop', 'hunting_store', 'gun_shop', 'tobacco_shop', 'vape_store',
+                'cannabis_dispensary', 'party_supply_store', 'office_supply_store', 'new_age_store',
+                'religious_goods_store', 'coin_shop', 'pawn_shop', 'trophy_awards_shop', 'magic_shop',
+                'supermarket', 'convenience_store', 'natural_food_store', 'specialty_food_store',
+                'farmers_market', 'asian_grocery', 'hispanic_grocery', 'middle_eastern_grocery',
+                'indian_grocery', 'african_grocery', 'european_deli', 'jewish_deli', 'italian_deli',
+                'butcher_shop', 'fish_market', 'cheese_shop', 'deli', 'liquor_store', 'wine_shop',
+                'craft_beer_store', 'pharmacy', 'compounding_pharmacy', 'vitamin_supplement_shop',
+                'medical_supply_store', 'optical_store', 'hearing_aid_store',
+                'orthopedic_supply_store', 'florist', 'gift_shop', 'souvenir_store', 'pet_store',
+                'pet_supply_store', 'aquarium_pet_store',
+            ),
+            'Health & Medical' => array(
+                'doctor', 'family_practice', 'pediatrician', 'ob_gyn', 'dermatologist',
+                'cardiologist', 'orthopedic_surgeon', 'neurologist', 'gastroenterologist',
+                'urologist', 'endocrinologist', 'allergist', 'oncologist', 'psychiatrist', 'dentist',
+                'orthodontist', 'periodontist', 'oral_surgeon', 'pediatric_dentist',
+                'cosmetic_dentist', 'hospital', 'urgent_care', 'physiotherapist', 'chiropractor',
+                'optometrist', 'mental_health', 'acupuncturist', 'naturopath', 'dietitian',
+                'audiologist', 'speech_therapist', 'occupational_therapist', 'plastic_surgeon',
+                'fertility_clinic', 'dialysis_center', 'medical_lab', 'sleep_clinic',
+                'pain_management', 'iv_therapy', 'functional_medicine', 'drug_rehab', 'blood_bank',
+            ),
+            'Wellness & Beauty' => array(
+                'spa', 'med_spa', 'beauty_salon', 'hair_care', 'barber', 'nail_salon',
+                'tanning_salon', 'tattoo_parlor', 'piercing_studio', 'microblading_studio',
+                'lash_studio', 'brow_bar', 'waxing_studio', 'laser_hair_removal', 'massage',
+                'reflexology', 'float_spa', 'infrared_sauna', 'cryotherapy', 'gym', 'yoga_studio',
+                'pilates_studio', 'barre_studio', 'crossfit', 'personal_trainer', 'boxing_gym',
+                'martial_arts_school', 'dance_studio', 'cycling_studio', 'swimming_pool',
+                'weight_loss_center', 'wellness_center',
+            ),
+            'Automotive' => array(
+                'car_dealer', 'used_car_dealer', 'luxury_car_dealer', 'electric_vehicle_dealer',
+                'motorcycle_dealer', 'rv_dealer', 'boat_dealer', 'car_repair', 'oil_change',
+                'tire_shop', 'brake_service', 'transmission_repair', 'collision_repair',
+                'auto_glass_repair', 'car_audio_shop', 'vehicle_wrap', 'car_wash', 'auto_detailing',
+                'gas_station', 'auto_parts_store', 'towing_service', 'driving_school', 'smog_check',
+            ),
+            'Professional & Financial Services' => array(
+                'lawyer', 'family_lawyer', 'criminal_lawyer', 'immigration_lawyer',
+                'personal_injury_lawyer', 'real_estate_lawyer', 'estate_planning_lawyer',
+                'corporate_lawyer', 'accounting', 'cpa_firm', 'tax_preparation', 'real_estate_agency',
+                'property_management', 'mortgage_broker', 'insurance_agency', 'travel_agency',
+                'financial_advisor', 'bank', 'credit_union', 'currency_exchange', 'check_cashing',
+                'notary', 'hr_consulting', 'it_consulting', 'business_consulting', 'marketing_agency',
+                'printing_shop', 'signage_company', 'coworking_space', 'moving_company',
+            ),
+            'Home & Trade Services' => array(
+                'plumber', 'electrician', 'hvac', 'roofing_contractor', 'general_contractor',
+                'remodeling_contractor', 'painting_contractor', 'flooring_installer', 'landscaping',
+                'tree_service', 'cleaning_service', 'commercial_cleaning', 'carpet_cleaning',
+                'pressure_washing', 'pest_control', 'security_system', 'solar_installer',
+                'pool_service', 'handyman', 'locksmith', 'garage_door_service', 'masonry',
+                'fencing_contractor', 'interior_designer', 'architect',
+            ),
+            'Personal & Local Services' => array(
+                'laundry', 'dry_cleaning', 'shoe_repair', 'watch_repair', 'electronics_repair',
+                'phone_repair', 'computer_repair', 'appliance_repair', 'bicycle_repair',
+                'photography', 'photo_printing', 'post_office', 'mailbox_store', 'storage_facility',
+                'funeral_home', 'wedding_planner', 'event_planning', 'alterations_shop',
+            ),
+            'Education & Childcare' => array(
+                'school', 'university', 'library', 'tutoring', 'language_school', 'music_school',
+                'art_school', 'cooking_school', 'dance_school', 'coding_school', 'vocational_school',
+                'child_care', 'preschool', 'after_school', 'swim_school', 'gymnastics_school',
+            ),
+            'Entertainment & Recreation' => array(
+                'movie_theater', 'drive_in_theater', 'museum', 'history_museum', 'science_museum',
+                'childrens_museum', 'art_gallery', 'amusement_park', 'water_park', 'bowling_alley',
+                'casino', 'escape_room', 'arcade', 'trampoline_park', 'laser_tag', 'go_kart',
+                'mini_golf', 'axe_throwing', 'virtual_reality_arcade', 'billiards', 'bingo_hall',
+                'paintball', 'live_music_venue', 'performing_arts_theater', 'opera_house',
+                'comedy_club', 'aquarium', 'zoo', 'botanical_garden',
+            ),
+            'Sports & Fitness Facilities' => array(
+                'stadium', 'sports_complex', 'golf_course', 'golf_driving_range', 'tennis_club',
+                'ice_rink', 'skate_park', 'rock_climbing', 'shooting_range', 'equestrian',
+                'surf_school', 'ski_resort', 'batting_cage', 'soccer_complex', 'swim_center',
+            ),
+            'Hospitality & Lodging' => array(
+                'hotel', 'luxury_hotel', 'boutique_hotel', 'budget_hotel', 'extended_stay_hotel',
+                'bed_and_breakfast', 'hostel', 'vacation_rental', 'glamping', 'campground',
+                'conference_center', 'wedding_venue', 'banquet_hall',
+            ),
+            'Pets & Animals' => array(
+                'veterinary_care', 'animal_hospital', 'exotic_vet', 'holistic_vet', 'pet_groomer',
+                'pet_boarding', 'dog_daycare', 'dog_training',
+            ),
+            'Religious & Community' => array(
+                'church', 'catholic_church', 'evangelical_church', 'orthodox_church', 'mosque',
+                'synagogue', 'hindu_temple', 'sikh_gurdwara', 'buddhist_temple', 'community_center',
+                'nonprofit', 'senior_center',
+            ),
+        );
+
+        // Build the labelled map by looking up each key in the category library.
+        $industry_map = array();
+        foreach ( $industry_groups as $industry => $keys ) {
+            $industry_map[ $industry ] = array();
+            foreach ( $keys as $key ) {
+                if ( isset( $category_map[ $key ] ) ) {
+                    $industry_map[ $industry ][ $key ] = $category_map[ $key ];
+                }
+            }
+        }
+
+        // ── US States ─────────────────────────────────────────────────────────
+        $us_states = array(
+            'AL' => 'Alabama',        'AK' => 'Alaska',         'AZ' => 'Arizona',
+            'AR' => 'Arkansas',       'CA' => 'California',     'CO' => 'Colorado',
+            'CT' => 'Connecticut',    'DE' => 'Delaware',       'FL' => 'Florida',
+            'GA' => 'Georgia',        'HI' => 'Hawaii',         'ID' => 'Idaho',
+            'IL' => 'Illinois',       'IN' => 'Indiana',        'IA' => 'Iowa',
+            'KS' => 'Kansas',         'KY' => 'Kentucky',       'LA' => 'Louisiana',
+            'ME' => 'Maine',          'MD' => 'Maryland',       'MA' => 'Massachusetts',
+            'MI' => 'Michigan',       'MN' => 'Minnesota',      'MS' => 'Mississippi',
+            'MO' => 'Missouri',       'MT' => 'Montana',        'NE' => 'Nebraska',
+            'NV' => 'Nevada',         'NH' => 'New Hampshire',  'NJ' => 'New Jersey',
+            'NM' => 'New Mexico',     'NY' => 'New York',       'NC' => 'North Carolina',
+            'ND' => 'North Dakota',   'OH' => 'Ohio',           'OK' => 'Oklahoma',
+            'OR' => 'Oregon',         'PA' => 'Pennsylvania',   'RI' => 'Rhode Island',
+            'SC' => 'South Carolina', 'SD' => 'South Dakota',   'TN' => 'Tennessee',
+            'TX' => 'Texas',          'UT' => 'Utah',           'VT' => 'Vermont',
+            'VA' => 'Virginia',       'WA' => 'Washington',     'WV' => 'West Virginia',
+            'WI' => 'Wisconsin',      'WY' => 'Wyoming',        'DC' => 'District of Columbia',
+        );
         ?>
         <div class="wrap fi-admin-wrap">
             <h1><?php _e( 'Batch Prospect Scanner', 'f-insights' ); ?></h1>
@@ -284,19 +470,42 @@ class FI_Batch_Scanner {
 
             <!-- ── Batch search form ────────────────────────────────────────── -->
             <div style="background:#fff;border:1px solid #ddd;border-radius:6px;padding:20px;margin-bottom:20px;">
-                <table class="form-table" style="max-width:640px;">
+                <table class="form-table" style="max-width:680px;">
                     <tr>
-                        <th scope="row"><label for="fi-batch-category"><?php _e( 'Business Category', 'f-insights' ); ?></label></th>
+                        <th scope="row"><label for="fi-batch-industry"><?php _e( 'Industry', 'f-insights' ); ?></label></th>
                         <td>
-                            <input type="text" id="fi-batch-category" class="regular-text"
-                                   placeholder="<?php esc_attr_e( 'e.g. HVAC contractors, roofing companies, dentists', 'f-insights' ); ?>" />
+                            <select id="fi-batch-industry" class="regular-text">
+                                <option value=""><?php _e( '— Select an Industry —', 'f-insights' ); ?></option>
+                                <?php foreach ( array_keys( $industry_map ) as $industry_name ) : ?>
+                                    <option value="<?php echo esc_attr( $industry_name ); ?>"><?php echo esc_html( $industry_name ); ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row"><label for="fi-batch-location"><?php _e( 'Location', 'f-insights' ); ?></label></th>
+                        <th scope="row"><label for="fi-batch-category"><?php _e( 'Business Category', 'f-insights' ); ?></label></th>
                         <td>
-                            <input type="text" id="fi-batch-location" class="regular-text"
-                                   placeholder="<?php esc_attr_e( 'e.g. Austin, TX or Miami, Florida', 'f-insights' ); ?>" />
+                            <select id="fi-batch-category" class="regular-text" disabled>
+                                <option value=""><?php _e( '— Select an Industry first —', 'f-insights' ); ?></option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="fi-batch-state"><?php _e( 'State', 'f-insights' ); ?></label></th>
+                        <td>
+                            <select id="fi-batch-state" class="regular-text">
+                                <option value=""><?php _e( '— Select a State —', 'f-insights' ); ?></option>
+                                <?php foreach ( $us_states as $abbr => $state_name ) : ?>
+                                    <option value="<?php echo esc_attr( $state_name ); ?>"><?php echo esc_html( $state_name ); ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="fi-batch-city"><?php _e( 'City', 'f-insights' ); ?></label></th>
+                        <td>
+                            <input type="text" id="fi-batch-city" class="regular-text"
+                                   placeholder="<?php esc_attr_e( 'e.g. Austin', 'f-insights' ); ?>" />
                         </td>
                     </tr>
                     <tr>
@@ -365,18 +574,48 @@ class FI_Batch_Scanner {
             var scanningIdx  = -1;
             var totalToScan  = 0;
 
+            // ── Industry map passed from PHP ───────────────────────────────────
+            var industryMap = <?php echo wp_json_encode( $industry_map ); ?>;
+
+            // ── Populate Business Category when Industry changes ───────────────
+            $('#fi-batch-industry').on('change', function() {
+                var industry = $(this).val();
+                var $cat     = $('#fi-batch-category');
+                $cat.empty();
+                if ( ! industry || ! industryMap[ industry ] ) {
+                    $cat.append('<option value="">— Select an Industry first —</option>').prop('disabled', true);
+                    return;
+                }
+                $cat.append('<option value="">— Select a Business Category —</option>');
+                $.each( industryMap[ industry ], function( key, label ) {
+                    $cat.append('<option value="' + escHtml(label) + '">' + escHtml(label) + '</option>');
+                });
+                $cat.prop('disabled', false);
+            });
+
             // ── Find Prospects ────────────────────────────────────────────────
             $('#fi-batch-find-btn').on('click', function() {
-                var category = $('#fi-batch-category').val().trim();
-                var location = $('#fi-batch-location').val().trim();
+                var category = $('#fi-batch-category').val();
+                var state    = $('#fi-batch-state').val();
+                var city     = $('#fi-batch-city').val().trim();
                 var count    = parseInt($('#fi-batch-count').val(), 10) || 5;
                 var $btn     = $(this);
                 var $status  = $('#fi-batch-find-status');
 
-                if (!category || !location) {
-                    $status.css('color','#b32d2e').text('Enter a category and location.').show();
+                if (!category) {
+                    $status.css('color','#b32d2e').text('Please select an Industry and Business Category.').show();
                     return;
                 }
+                if (!state) {
+                    $status.css('color','#b32d2e').text('Please select a State.').show();
+                    return;
+                }
+                if (!city) {
+                    $status.css('color','#b32d2e').text('Please enter a City.').show();
+                    return;
+                }
+
+                var location = city + ', ' + state;
 
                 $btn.prop('disabled', true).text('Searching…');
                 $status.css('color','#646970').text('Searching Google Places…').show();
@@ -395,7 +634,7 @@ class FI_Batch_Scanner {
                     }
                     prospects = response.data.prospects || [];
                     if (prospects.length === 0) {
-                        $status.css('color','#b32d2e').text('No businesses found for that query. Try a different category or location.');
+                        $status.css('color','#b32d2e').text('No businesses found for that query. Try a different category or city.');
                         return;
                     }
                     $status.css('color','#00a32a').text('✓ Found ' + prospects.length + ' prospect(s).');
