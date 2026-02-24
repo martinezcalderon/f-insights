@@ -678,6 +678,36 @@ function fi_fs_uninstall_cleanup() {
 
         // Credit link visibility (all users)
         'fi_show_credit_link',
+
+        // Lead notifications (v1.6+)
+        'fi_lead_notification_threshold',
+
+        // Per-context model overrides (v1.9+)
+        'fi_claude_model_scan',
+        'fi_claude_model_internal',
+        'fi_claude_model_intel',
+
+        // Scan button / email button / CTA customisation (v2.0+)
+        'fi_scan_btn_text',
+        'fi_scan_btn_icon',
+        'fi_scan_placeholder',
+        'fi_email_btn_text',
+        'fi_email_btn_icon',
+        'fi_email_placeholder',
+        'fi_wl_cta_btn_icon',
+
+        // Batch scanner (v2.2+)
+        'fi_batch_max_size',
+        'fi_batch_daily_quota',
+
+        // GDPR lead retention (v2.2+)
+        'fi_lead_retention_days',
+
+        // CRM webhook (v2.3+)
+        'fi_crm_webhook_url',
+
+        // Internal migration flags
+        'fi_migration_autoload_no',
     );
 
     foreach ( $options as $option ) {
