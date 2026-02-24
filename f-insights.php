@@ -84,47 +84,49 @@ if ( ! function_exists( 'fi_fs' ) ) {
  *
  * @see https://freemius.com/help/documentation/wordpress-sdk/opt-in-message/
  */
-function fi_fs_register_optin_hooks() {
-    if ( ! function_exists( 'fi_fs' ) ) {
-        return;
+if ( ! function_exists( 'fi_fs_register_optin_hooks' ) ) {
+    function fi_fs_register_optin_hooks() {
+        if ( ! function_exists( 'fi_fs' ) ) {
+            return;
+        }
+
+        // Plugin icon — points to local asset since the plugin is not yet on WordPress.org.
+        // Freemius would otherwise try to fetch it from .org and fall back to a grey box.
+        fi_fs()->add_filter( 'plugin_icon', function() {
+            return FI_PLUGIN_DIR . 'assets/img/icon.jpg';
+        } );
+
+        // Opt-in message for new users.
+        fi_fs()->add_filter( 'connect_message', function(
+            $message, $user_first_name, $product_title,
+            $user_login, $site_link, $freemius_link
+        ) {
+            return sprintf(
+                /* translators: 1: user first name, 2: plugin name (bold), 3: Freemius link */
+                __( 'Hey %1$s! Help us improve %2$s by sharing non-sensitive diagnostic data. This lets us push security & feature updates directly to you. %3$s.', 'f-insights' ),
+                $user_first_name,
+                '<b>' . $product_title . '</b>',
+                $freemius_link
+            );
+        }, 10, 6 );
+
+        // Opt-in message for existing users seeing the screen after a plugin update.
+        fi_fs()->add_filter( 'connect_message_on_update', function(
+            $message, $user_first_name, $product_title,
+            $user_login, $site_link, $freemius_link
+        ) {
+            return sprintf(
+                /* translators: 1: user first name, 2: plugin name (bold), 3: Freemius link */
+                __( 'Hey %1$s! We added opt-in telemetry to %2$s to help us fix bugs faster and ship better features. If you skip this, the plugin works exactly as before. %3$s.', 'f-insights' ),
+                $user_first_name,
+                '<b>' . $product_title . '</b>',
+                $freemius_link
+            );
+        }, 10, 6 );
     }
-
-    // Plugin icon — points to local asset since the plugin is not yet on WordPress.org.
-    // Freemius would otherwise try to fetch it from .org and fall back to a grey box.
-    fi_fs()->add_filter( 'plugin_icon', function() {
-        return FI_PLUGIN_DIR . 'assets/img/icon.jpg';
-    } );
-
-    // Opt-in message for new users.
-    fi_fs()->add_filter( 'connect_message', function(
-        $message, $user_first_name, $product_title,
-        $user_login, $site_link, $freemius_link
-    ) {
-        return sprintf(
-            /* translators: 1: user first name, 2: plugin name (bold), 3: Freemius link */
-            __( 'Hey %1$s! Help us improve %2$s by sharing non-sensitive diagnostic data. This lets us push security & feature updates directly to you. %3$s.', 'f-insights' ),
-            $user_first_name,
-            '<b>' . $product_title . '</b>',
-            $freemius_link
-        );
-    }, 10, 6 );
-
-    // Opt-in message for existing users seeing the screen after a plugin update.
-    fi_fs()->add_filter( 'connect_message_on_update', function(
-        $message, $user_first_name, $product_title,
-        $user_login, $site_link, $freemius_link
-    ) {
-        return sprintf(
-            /* translators: 1: user first name, 2: plugin name (bold), 3: Freemius link */
-            __( 'Hey %1$s! We added opt-in telemetry to %2$s to help us fix bugs faster and ship better features. If you skip this, the plugin works exactly as before. %3$s.', 'f-insights' ),
-            $user_first_name,
-            '<b>' . $product_title . '</b>',
-            $freemius_link
-        );
-    }, 10, 6 );
+    // Hook early enough that the listener is registered before fi_fs() is called.
+    add_action( 'plugins_loaded', 'fi_fs_register_optin_hooks', 1 );
 }
-// Hook early enough that the listener is registered before fi_fs() is called.
-add_action( 'plugins_loaded', 'fi_fs_register_optin_hooks', 1 );
 // Include required files
 require_once FI_PLUGIN_DIR . 'includes/class-fi-premium.php';
 require_once FI_PLUGIN_DIR . 'includes/class-fi-logger.php';
@@ -596,6 +598,7 @@ fi_fs()->add_action( 'after_uninstall', 'fi_fs_uninstall_cleanup' );
  *
  * NOTE: User-uploaded files and WordPress core data are never touched.
  */
+if ( ! function_exists( 'fi_fs_uninstall_cleanup' ) ) :
 function fi_fs_uninstall_cleanup() {
     global $wpdb;
 
@@ -760,3 +763,4 @@ function fi_fs_uninstall_cleanup() {
     // Flush so stale in-memory references to our data do not persist.
     wp_cache_flush();
 }
+endif;
