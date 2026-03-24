@@ -1,0 +1,3994 @@
+/* F! Insights — Admin CSS v2.0.1 */
+
+/* ─── Layout ────────────────────────────────────────────────────────────── */
+.fi-settings-wrap { max-width: 1080px; }
+.fi-market-intel-wrap { max-width: 100%; }
+
+.fi-tab-content {
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-top: none;
+    padding: 28px 32px;
+    border-radius: 0 0 4px 4px;
+}
+
+/* ─── Stat cards ────────────────────────────────────────────────────────── */
+.fi-stats-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.fi-stat-card {
+    flex: 1 1 160px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 16px 20px;
+}
+
+.fi-stat-card--alert { border-left: 4px solid #dc2626; }
+.fi-stat-card--success { border-left: 4px solid #16a34a; }
+
+.fi-stat-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; color: #6b7280; margin-bottom: 4px; }
+.fi-stat-value { font-size: 28px; font-weight: 700; color: #111827; line-height: 1; }
+.fi-stat-sub   { font-size: 12px; color: #9ca3af; margin-top: 4px; }
+
+/* ─── Cards ─────────────────────────────────────────────────────────────── */
+.fi-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+}
+
+.fi-card h3 { margin: 0 0 16px; font-size: 15px; color: #111827; }
+
+.fi-card--hot { border-left: 4px solid #f59e0b; }
+
+/* ─── Settings form ──────────────────────────────────────────────────────── */
+.fi-settings-form { max-width: 640px; }
+.fi-field-row     { margin-bottom: 20px; }
+
+.fi-label {
+    display: block;
+    font-weight: 600;
+    font-size: 13px;
+    color: #374151;
+    margin-bottom: 6px;
+}
+
+.fi-input,
+.fi-select {
+    width: 100%;
+    max-width: 480px;
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #111827;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+.fi-input:focus,
+.fi-select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37,99,235,.15);
+}
+
+.fi-input-sm { max-width: 220px; }
+
+.fi-textarea {
+    width: 100%;
+    max-width: 480px;
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: monospace;
+    resize: vertical;
+    min-height: 100px;
+}
+
+.fi-hint {
+    font-size: 12px;
+    color: #9ca3af;
+    margin: 4px 0 0;
+}
+
+.fi-section-title {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    color: #6b7280;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 8px;
+    margin: 28px 0 16px;
+}
+
+/* ─── API key rows ───────────────────────────────────────────────────────── */
+.fi-key-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 480px;
+}
+
+.fi-key-row input { flex: 1; }
+
+.fi-show-key,
+.fi-test-btn {
+    white-space: nowrap;
+    padding: 7px 14px;
+    font-size: 13px;
+    cursor: pointer;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background: #fff;
+    color: #374151;
+    transition: background .15s;
+}
+
+.fi-show-key:hover,
+.fi-test-btn:hover { background: #f3f4f6; }
+
+.fi-test-result {
+    margin-top: 6px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.fi-ok   { color: #16a34a; }
+.fi-fail { color: #dc2626; }
+
+/* ─── Model selector ─────────────────────────────────────────────────────── */
+.fi-model-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    max-width: 640px;
+}
+
+.fi-model-option {
+    position: relative;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 14px;
+    cursor: pointer;
+    transition: border-color .15s;
+}
+
+.fi-model-option:has(input:checked) { border-color: #2563eb; background: #eff6ff; }
+.fi-model-option input[type="radio"] { position: absolute; opacity: 0; }
+.fi-model-name  { font-weight: 700; font-size: 13px; color: #111827; }
+.fi-model-desc  { font-size: 12px; color: #6b7280; margin-top: 4px; }
+.fi-model-cost  { font-size: 11px; color: #9ca3af; margin-top: 6px; }
+
+/* ─── Shortcode box ──────────────────────────────────────────────────────── */
+.fi-shortcode-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 12px 16px;
+    max-width: 400px;
+    margin-bottom: 16px;
+}
+
+.fi-shortcode-box code {
+    flex: 1;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1d4ed8;
+    background: none;
+    padding: 0;
+}
+
+.fi-copy-btn {
+    padding: 6px 14px;
+    font-size: 13px;
+    cursor: pointer;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background: #fff;
+}
+
+/* ─── System status ──────────────────────────────────────────────────────── */
+.fi-system-status {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    max-width: 500px;
+    margin-bottom: 20px;
+}
+
+.fi-status-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #374151;
+}
+
+.fi-status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.fi-status-dot--ok      { background: #16a34a; }
+.fi-status-dot--warn    { background: #d97706; }
+.fi-status-dot--error   { background: #dc2626; }
+
+/* ─── Suggestion chips ───────────────────────────────────────────────────── */
+.fi-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+.fi-chip {
+    font-size: 12px;
+    padding: 3px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 20px;
+    background: #f9fafb;
+    color: #374151;
+    cursor: pointer;
+    transition: background .15s, border-color .15s;
+}
+
+.fi-chip:hover {
+    background: #eff6ff;
+    border-color: #2563eb;
+    color: #1d4ed8;
+}
+
+/* ─── Logo preview ───────────────────────────────────────────────────────── */
+#fi-logo-preview {
+    max-height: 60px;
+    max-width: 200px;
+    display: block;
+    margin-top: 10px;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+/* ─── Save bar ───────────────────────────────────────────────────────────── */
+.fi-save-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 20px;
+    border-top: 1px solid #e5e7eb;
+    margin-top: 28px;
+}
+
+.fi-saved-notice {
+    font-size: 13px;
+    color: #16a34a;
+    font-weight: 600;
+}
+
+/* ─── Upgrade prompt ─────────────────────────────────────────────────────── */
+.fi-upgrade-prompt {
+    padding: 24px;
+    background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%);
+    border: 1px solid #bfdbfe;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.fi-upgrade-prompt h3 { color: #1e40af; margin-bottom: 8px; }
+.fi-upgrade-prompt p  { color: #374151; margin-bottom: 16px; }
+
+.fi-btn {
+    display: inline-block;
+    padding: 10px 24px;
+    background: #1d4ed8;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    transition: background .15s;
+}
+
+.fi-btn:hover { background: #1e40af; color: #fff; }
+
+/* ─── Leads toolbar ──────────────────────────────────────────────────────── */
+.fi-leads-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.fi-pipeline-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+}
+
+.fi-pipeline-stat {
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    text-decoration: none;
+    transition: opacity .15s;
+    cursor: pointer;
+}
+
+.fi-pipeline-stat:hover       { opacity: .8; }
+.fi-pipeline-stat--active     { box-shadow: 0 0 0 2px currentColor; }
+.fi-pipeline-stat--new        { background: #fef3c7; color: #92400e; }
+.fi-pipeline-stat--contacted  { background: #dbeafe; color: #1e40af; }
+.fi-pipeline-stat--qualified  { background: #d1fae5; color: #065f46; }
+.fi-pipeline-stat--closed     { background: #dcfce7; color: #14532d; }
+.fi-pipeline-stat--lost       { background: #f3f4f6; color: #6b7280; }
+
+.fi-leads-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* ─── Lead card grid ─────────────────────────────────────────────────────── */
+.fi-lead-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 16px;
+}
+
+.fi-lead-card-v2 {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: box-shadow .15s;
+}
+
+.fi-lead-card-v2:hover { box-shadow: 0 4px 12px rgba(0,0,0,.07); }
+
+.fi-lead-card-v2.fi-lead-card--overdue {
+    border-left: 4px solid #dc2626;
+}
+
+/* Card header */
+.fi-lc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid #f3f4f6;
+    padding-bottom: 12px;
+    margin-bottom: 4px;
+}
+
+.fi-lc-name-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.fi-lc-title {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+}
+
+.fi-lc-title strong { font-size: 15px; color: #111827; }
+
+.fi-lc-category {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.fi-score-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.fi-score-badge--lg {
+    font-size: 14px;
+    padding: 4px 12px;
+}
+
+/* Contact row */
+.fi-lc-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.fi-lc-action {
+    font-size: 12px;
+    text-decoration: none;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 1px solid #e5e7eb;
+    background: #f9fafb;
+    color: #374151;
+    transition: background .12s, border-color .12s;
+    white-space: nowrap;
+}
+
+.fi-lc-action:hover             { background: #f3f4f6; border-color: #d1d5db; color: #111827; }
+.fi-lc-action--email:hover      { background: #eff6ff; border-color: #bfdbfe; color: #1d4ed8; }
+.fi-lc-action--phone:hover      { background: #f0fdf4; border-color: #bbf7d0; color: #15803d; }
+.fi-lc-action--report           { background: #eff6ff; border-color: #bfdbfe; color: #1d4ed8; }
+
+/* Pain points */
+.fi-lc-pain {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 8px 0;
+    border-top: 1px dashed #f3f4f6;
+    border-bottom: 1px dashed #f3f4f6;
+    margin: 4px 0;
+}
+
+.fi-pain-label {
+    background: #fef2f2;
+    color: #991b1b;
+    font-size: 12px;
+    padding: 2px 10px;
+    border-radius: 20px;
+    border: 1px solid #fecaca;
+}
+
+/* Controls row */
+.fi-lc-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.fi-lc-control-group { display: flex; flex-direction: column; gap: 4px; }
+.fi-lc-control-group--notes { grid-column: 1 / -1; }
+
+.fi-lc-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    color: #6b7280;
+}
+
+.fi-lc-label--overdue { color: #dc2626; }
+.fi-lc-label--today   { color: #d97706; }
+
+.fi-lc-select,
+.fi-lc-input {
+    font-size: 13px;
+    padding: 6px 8px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background: #fff;
+    color: #111827;
+    width: 100%;
+}
+
+.fi-lc-select:focus,
+.fi-lc-input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37,99,235,.15);
+}
+
+.fi-lc-textarea {
+    font-size: 13px;
+    padding: 6px 8px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background: #fff;
+    color: #111827;
+    width: 100%;
+    resize: vertical;
+    min-height: 52px;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+.fi-lc-textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37,99,235,.15);
+}
+
+/* Card footer */
+.fi-lc-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 8px;
+    border-top: 1px solid #f3f4f6;
+}
+
+.fi-lc-date { font-size: 12px; color: #9ca3af; }
+
+.fi-pitch-btn {
+    font-size: 12px !important;
+}
+
+/* AI Pitch output */
+.fi-pitch-output {
+    margin-top: 4px;
+}
+
+.fi-pitch-loading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #6b7280;
+    padding: 12px 0;
+}
+
+.fi-pitch-box {
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 13px;
+}
+
+.fi-pitch-subject {
+    font-size: 13px;
+    color: #374151;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.fi-pitch-body {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #374151;
+    white-space: pre-wrap;
+    margin-bottom: 12px;
+}
+
+.fi-pitch-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.fi-pitch-error {
+    font-size: 13px;
+    color: #dc2626;
+    padding: 8px 0;
+}
+
+/* Legacy compat */
+.fi-leads-header { display: none; }
+.fi-leads-table  { display: none; }
+.fi-small-link   { font-size: 12px; color: #6b7280; }
+.fi-lead-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    background: #fff;
+}
+
+.fi-badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 1px 8px; border-radius: 20px; vertical-align: middle; margin-left: 6px; }
+.fi-badge--hot     { background: #fef3c7; color: #92400e; }
+.fi-badge--overdue { background: #fee2e2; color: #991b1b; }
+.fi-lc-name-row { display: flex; align-items: center; flex-wrap: wrap; gap: 2px; }
+.fi-lead-card-v2.fi-lead-card--hot { border-left: 3px solid #f59e0b; }
+.fi-pain-label { background: #fef2f2; color: #991b1b; font-size: 12px; padding: 2px 10px; border-radius: 20px; border: 1px solid #fecaca; }
+
+/* ─── Analytics charts ───────────────────────────────────────────────────── */
+.fi-bar-chart {
+    height: 140px;
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    overflow: hidden;
+    padding-bottom: 20px; /* room for labels */
+    position: relative;
+}
+
+.fi-bar-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+}
+
+.fi-bar {
+    width: 100%;
+    background: #3b82f6;
+    border-radius: 2px 2px 0 0;
+    min-height: 3px;
+    transition: height .3s;
+}
+
+.fi-bar-label {
+    font-size: 9px;
+    color: #9ca3af;
+    margin-top: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    text-align: center;
+}
+
+.fi-score-dist { display: flex; flex-direction: column; gap: 6px; }
+.fi-dist-bar   { padding: 6px 12px; border-radius: 4px; color: #fff; font-size: 13px; font-weight: 600; min-width: 30px; }
+.fi-dist-bar--green  { background: #16a34a; }
+.fi-dist-bar--orange { background: #d97706; }
+.fi-dist-bar--red    { background: #dc2626; }
+
+.fi-simple-table { width: 100%; border-collapse: collapse; font-size: 13px; table-layout: auto; }
+.fi-simple-table th { text-align: left; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; color: #6b7280; padding: 8px 12px; border-bottom: 1px solid #e5e7eb; white-space: nowrap; }
+.fi-simple-table td { padding: 8px 12px; border-bottom: 1px solid #f3f4f6; color: #374151; word-break: break-word; }
+.fi-simple-table tr:last-child td { border-bottom: none; }
+
+/* ─── Market Intel output ────────────────────────────────────────────────── */
+.fi-intel-output {
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 20px 24px;
+}
+
+.fi-intel-text {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #374151;
+    white-space: pre-wrap;
+}
+
+.fi-intel-nudge {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #92400e;
+    margin-bottom: 12px;
+}
+
+/* ─── Debug logs ─────────────────────────────────────────────────────────── */
+.fi-log-viewer {
+    background: #0f172a;
+    border-radius: 8px;
+    padding: 16px;
+    max-height: 500px;
+    overflow-y: auto;
+    font-family: 'SF Mono', 'Fira Code', Consolas, monospace;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.fi-log-line { display: block; padding: 1px 0; border-bottom: 1px solid rgba(255,255,255,.03); }
+.fi-log-line[data-level="INFO"]  { color: #94a3b8; }
+.fi-log-line[data-level="API"]   { color: #7dd3fc; }
+.fi-log-line[data-level="ERROR"] { color: #fca5a5; }
+.fi-log-line[data-level="WARN"]  { color: #fcd34d; }
+.fi-log-empty { color: #475569; font-style: italic; }
+
+.fi-log-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.fi-log-meta { font-size: 12px; color: #6b7280; margin-bottom: 8px; }
+
+/* ─── Spinner ────────────────────────────────────────────────────────────── */
+.fi-spinner {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #e5e7eb;
+    border-top-color: #2563eb;
+    border-radius: 50%;
+    animation: fi-spin .7s linear infinite;
+    vertical-align: middle;
+}
+
+@keyframes fi-spin { to { transform: rotate(360deg); } }
+
+/* ─── No data placeholder ────────────────────────────────────────────────── */
+.fi-no-data { color: #9ca3af; font-style: italic; text-align: center; padding: 24px 0; font-size: 14px; }
+.fi-error-text { color: #dc2626; font-size: 14px; }
+
+/* ─── Tabs (Market Intel uses custom tabs) ───────────────────────────────── */
+.fi-tabs { display: flex; gap: 0; margin-bottom: 0; border-bottom: 1px solid #c3c4c7; }
+.fi-tab {
+    padding: 10px 18px;
+    font-size: 14px;
+    color: #374151;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-bottom: none;
+    border-radius: 4px 4px 0 0;
+    margin-bottom: -1px;
+    display: inline-block;
+}
+.fi-tab:hover { color: #1d4ed8; }
+.fi-tab--active { background: #fff; border-color: #c3c4c7; color: #1d4ed8; font-weight: 600; }
+
+/* ─── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .fi-model-grid   { grid-template-columns: 1fr; }
+    .fi-leads-toolbar { flex-direction: column; }
+    .fi-stats-row    { flex-direction: column; }
+    .fi-lead-cards   { grid-template-columns: 1fr; }
+    .fi-lc-controls  { grid-template-columns: 1fr; }
+    .fi-lc-control-group--notes { grid-column: auto; }
+}
+
+/* ─── Brand color pickers ────────────────────────────────────────────────── */
+
+/*
+ * Color picker rows: each row pairs a label + color input on the left
+ * with a live WCAG contrast badge on the right.
+ * Groups of related pairs sit in a 2-col .fi-color-group grid.
+ */
+
+.fi-color-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 24px;
+    margin-bottom: 20px;
+}
+
+.f.fi-lc-title {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+}
+
+.fi-color-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px !important;
+}
+
+/* Native color input */
+.fi-color-input {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 40px;
+    height: 32px;
+    padding: 2px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background: #fff;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.fi-color-input::-webkit-color-swatch-wrapper { padding: 0; border-radius: 4px; }
+.fi-color-input::-webkit-color-swatch         { border: none; border-radius: 4px; }
+.fi-color-input::-moz-color-swatch            { border: none; border-radius: 4px; }
+
+/* Hex text field */
+.fi-color-hex {
+    width: 80px;
+    padding: 6px 8px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 12px;
+    font-family: 'SF Mono', 'Fira Code', Consolas, monospace;
+    color: #374151;
+    background: #fff;
+    text-transform: uppercase;
+}
+
+.fi-color-hex:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37,99,235,.15);
+}
+
+/*
+ * WCAG contrast badge — three states: pass, warn, fail
+ * JS adds the modifier class; CSS handles all visual states.
+ */
+
+.fi-wcag-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    border: 1px solid transparent;
+    transition: background .2s, border-color .2s, color .2s;
+    width: fit-content;
+    cursor: default;
+}
+
+.fi-wcag-badge--pass { background: #dcfce7; border-color: #bbf7d0; color: #14532d; }
+.fi-wcag-badge--warn { background: #fef3c7; border-color: #fde68a; color: #78350f; }
+.fi-wcag-badge--fail { background: #fee2e2; border-color: #fecaca; color: #7f1d1d; }
+
+/* Auto-fix button — only visible when contrast fails */
+.fi-autofix-btn {
+    display: none;
+    padding: 3px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    border: 1px solid #d1d5db;
+    border-radius: 20px;
+    background: #fff;
+    color: #374151;
+    cursor: pointer;
+    transition: background .15s;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.fi-autofix-btn:hover { background: #f3f4f6; }
+.fi-autofix-btn.fi-autofix-visible { display: inline-block; }
+
+/* Reset-to-defaults link */
+.fi-color-reset {
+    display: inline-block;
+    margin-top: 4px;
+    font-size: 12px;
+    color: #6b7280;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.fi-color-reset:hover { color: #374151; }
+
+@media (max-width: 640px) {
+    .fi-color-group { grid-template-columns: 1fr; }
+}
+
+/* ─── Lead Form tab ──────────────────────────────────────────────────────── */
+.fi-lead-form-wrap { max-width: 100%; }
+
+.fi-lead-form-cols {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 32px;
+    align-items: start;
+}
+
+.fi-lead-form-settings { max-width: 560px; }
+
+/* Optional fields table */
+.fi-field-rows-table {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.fi-field-rows-header {
+    display: grid;
+    grid-template-columns: 1fr 80px 80px;
+    gap: 8px;
+    padding: 8px 16px;
+    background: #f9fafb;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    color: #6b7280;
+}
+
+.fi-field-row-item {
+    display: grid;
+    grid-template-columns: 1fr 80px 80px;
+    gap: 8px;
+    align-items: center;
+    padding: 10px 16px;
+    border-bottom: 1px solid #f3f4f6;
+    font-size: 13px;
+}
+
+.fi-field-row-item:last-child { border-bottom: none; }
+.fi-field-row-item--locked { background: #fafafa; color: #9ca3af; }
+
+.fi-field-locked-tag {
+    font-size: 11px;
+    font-weight: 600;
+    color: #9ca3af;
+}
+
+.fi-field-row-label { color: #374151; font-weight: 500; }
+
+/* Toggle switch */
+.fi-toggle {
+    position: relative;
+    display: inline-block;
+    width: 36px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.fi-toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
+
+.fi-toggle-track {
+    position: absolute;
+    inset: 0;
+    background: #d1d5db;
+    border-radius: 20px;
+    transition: background .2s;
+}
+
+.fi-toggle-track::after {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform .2s;
+    box-shadow: 0 1px 3px rgba(0,0,0,.2);
+}
+
+.fi-toggle input:checked + .fi-toggle-track { background: #2563eb; }
+.fi-toggle input:checked + .fi-toggle-track::after { transform: translateX(16px); }
+.fi-toggle--disabled { opacity: .4; cursor: not-allowed; }
+
+/* Custom field meta */
+.fi-custom-field-meta--hidden { display: none; }
+
+/* Live preview panel */
+.fi-lead-form-preview-wrap {
+    position: sticky;
+    top: 32px;
+}
+
+.fi-lead-form-preview {
+    background: var(--fi-surface, #fff);
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 16px rgba(0,0,0,.06);
+}
+
+.fi-preview-capture { display: flex; flex-direction: column; gap: 10px; }
+
+.fi-preview-headline {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--fi-body-text, #111827);
+    margin: 0;
+}
+
+.fi-preview-subtext {
+    font-size: 13px;
+    color: var(--fi-body-text, #6b7280);
+    opacity: .75;
+    margin: 0;
+}
+
+.fi-preview-name-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+/* Preview field mimics the floating label wrapper */
+.fi-preview-field {
+    position: relative;
+    height: 48px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background: #f9fafb;
+}
+
+.fi-preview-input-fake {
+    width: 100%;
+    height: 100%;
+}
+
+.fi-preview-label {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 13px;
+    color: #9ca3af;
+    pointer-events: none;
+}
+
+.fi-preview-field--required .fi-preview-label::after {
+    content: ' *';
+    color: #dc2626;
+}
+
+.fi-preview-btn {
+    width: 100%;
+    padding: 11px;
+    background: var(--fi-cta, #059669);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: default;
+    margin-top: 4px;
+}
+
+.fi-preview-thankyou {
+    font-size: 13px;
+    color: #059669;
+    text-align: center;
+    padding: 12px;
+    background: #f0fdf4;
+    border-radius: 6px;
+    border: 1px solid #bbf7d0;
+}
+
+@media (max-width: 960px) {
+    .fi-lead-form-cols { grid-template-columns: 1fr; }
+    .fi-lead-form-preview-wrap { position: static; }
+}
+
+/* ============================================================
+   Analytics Tab — Interpretive Briefing
+   ============================================================ */
+
+.fi-briefing-section {
+    margin-bottom: 32px;
+}
+
+.fi-briefing-heading {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #6b7280;
+    margin: 0 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.fi-briefing-intro {
+    font-size: 13px;
+    color: #6b7280;
+    margin: -6px 0 14px;
+}
+
+.fi-briefing-grid {
+    display: grid;
+    gap: 14px;
+}
+.fi-briefing-grid--2    { grid-template-columns: repeat(2, 1fr); }
+.fi-briefing-grid--3    { grid-template-columns: repeat(3, 1fr); }
+.fi-briefing-grid--auto { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+
+.fi-briefing-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 18px 20px;
+}
+
+.fi-briefing-card-value {
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1;
+    color: #111827;
+    margin-bottom: 4px;
+}
+
+.fi-briefing-card-denom {
+    font-size: 18px;
+    font-weight: 400;
+    color: #9ca3af;
+}
+
+.fi-briefing-card-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #6b7280;
+    margin-bottom: 10px;
+}
+
+.fi-briefing-card-signal {
+    font-size: 13px;
+    color: #374151;
+    line-height: 1.5;
+    border-top: 1px solid #f3f4f6;
+    padding-top: 10px;
+    margin-top: 6px;
+}
+
+.fi-briefing-insight {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #1e40af;
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+.fi-briefing-table-wrap {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 16px 20px;
+}
+
+.fi-briefing-table-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #374151;
+    margin-bottom: 12px;
+}
+
+.fi-hint-inline {
+    font-weight: 400;
+    color: #9ca3af;
+}
+
+.fi-briefing-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.fi-briefing-table th {
+    text-align: left;
+    font-weight: 600;
+    color: #6b7280;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0 8px 8px 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.fi-briefing-table td {
+    padding: 8px 8px 8px 0;
+    color: #374151;
+    border-bottom: 1px solid #f9fafb;
+    vertical-align: middle;
+}
+
+.fi-briefing-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Pain point bar chart */
+.fi-pain-grid {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.fi-pain-row {
+    display: grid;
+    grid-template-columns: 220px 1fr 80px;
+    align-items: center;
+    gap: 12px;
+}
+
+.fi-pain-row-label {
+    font-size: 13px;
+    color: #374151;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.fi-pain-rank {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background: #f3f4f6;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #6b7280;
+    flex-shrink: 0;
+}
+
+.fi-pain-bar-wrap {
+    background: #f3f4f6;
+    border-radius: 4px;
+    height: 8px;
+    overflow: hidden;
+}
+
+.fi-pain-bar {
+    height: 100%;
+    background: #6b7280;
+    border-radius: 4px;
+    transition: width 0.4s ease;
+}
+
+.fi-pain-count {
+    font-size: 12px;
+    font-weight: 600;
+    color: #6b7280;
+    text-align: right;
+}
+
+
+/* Raw scan table */
+.fi-scan-table-wrap {
+    overflow-x: auto;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+}
+
+.fi-scan-table {
+    width: 100%;
+    border: none;
+    border-radius: 0;
+}
+
+.fi-scan-table thead th {
+    white-space: nowrap;
+    user-select: none;
+}
+
+.fi-scan-table thead th.fi-sortable:hover {
+    background: #f0f4ff;
+    color: #4f46e5;
+}
+
+.fi-sort-icon {
+    font-size: 11px;
+    opacity: 0.5;
+    margin-left: 4px;
+}
+
+.fi-col-score {
+    text-align: center;
+}
+
+.fi-score-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.fi-score-pill-label {
+    font-weight: 400;
+    font-size: 11px;
+    opacity: 0.8;
+}
+
+.fi-muted {
+    color: #9ca3af;
+    font-style: italic;
+    font-size: 12px;
+}
+
+/* City cards */
+.fi-usage-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-top: 4px;
+}
+
+.fi-usage-card {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 16px;
+}
+
+.fi-usage-card--total {
+    background: #f0fdf4;
+    border-color: #bbf7d0;
+}
+
+.fi-usage-card-value {
+    font-size: 22px;
+    font-weight: 700;
+    color: #111827;
+    line-height: 1.2;
+}
+
+.fi-usage-card-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #374151;
+    margin-top: 4px;
+}
+
+.fi-usage-card-sub {
+    font-size: 11px;
+    color: #9ca3af;
+    margin-top: 2px;
+}
+
+.fi-section-heading {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 4px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+
+.fi-city-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 14px 16px;
+    text-align: center;
+}
+
+.fi-city-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 4px;
+}
+
+.fi-city-scans {
+    font-size: 12px;
+    color: #6b7280;
+    margin-bottom: 4px;
+}
+
+.fi-city-score {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.fi-card--empty {
+    text-align: center;
+    padding: 40px;
+    color: #6b7280;
+}
+
+.fi-intel-nudge--top {
+    background: #fefce8;
+    border: 1px solid #fde68a;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #92400e;
+    margin-bottom: 24px;
+}
+
+/* ============================================================
+   Market Intel Tab — Action Launcher
+   ============================================================ */
+
+.fi-intel-wrap {
+    max-width: 100%;
+}
+
+/* Threshold banner */
+.fi-intel-banner {
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 24px;
+}
+.fi-intel-banner--empty   { background: #f9fafb; border: 1px solid #e5e7eb; color: #6b7280; }
+.fi-intel-banner--building { background: #fefce8; border: 1px solid #fde68a; color: #92400e; }
+.fi-intel-banner--partial  { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+.fi-intel-banner--good     { background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; }
+.fi-intel-banner--full     { background: #f0fdf4; border: 1px solid #86efac; color: #14532d; }
+
+/* Action cards grid */
+.fi-intel-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.fi-intel-action-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: box-shadow 0.15s ease;
+}
+
+.fi-intel-action-card:hover:not(.fi-intel-action-card--locked) {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.fi-intel-action-card--locked {
+    background: #f9fafb;
+    opacity: 0.75;
+}
+
+.fi-intel-action-icon {
+    font-size: 28px;
+    line-height: 1;
+}
+
+.fi-intel-action-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.fi-intel-action-desc {
+    font-size: 13px;
+    color: #6b7280;
+    line-height: 1.5;
+    flex: 1;
+}
+
+.fi-intel-action-card .button-primary {
+    margin-top: 8px;
+    align-self: flex-start;
+}
+
+.fi-intel-action-locked {
+    font-size: 12px;
+    color: #9ca3af;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+}
+
+.fi-intel-progress {
+    display: inline-block;
+    background: #f3f4f6;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-weight: 600;
+    color: #6b7280;
+    font-size: 11px;
+    align-self: flex-start;
+}
+
+/* Output panel */
+#fi-intel-output-wrap {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 8px;
+}
+
+.fi-intel-output-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    border-bottom: 1px solid #e5e7eb;
+    background: #f9fafb;
+}
+
+.fi-intel-output-header strong {
+    font-size: 14px;
+    color: #111827;
+}
+
+.fi-intel-output-actions {
+    display: flex;
+    gap: 8px;
+}
+
+#fi-intel-loading {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.fi-intel-output {
+    padding: 20px 24px;
+    max-height: 600px;
+    overflow-y: auto;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #374151;
+}
+
+.fi-intel-heading {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111827;
+    margin: 16px 0 6px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.fi-intel-para {
+    margin: 0 0 12px;
+    line-height: 1.65;
+    color: #374151;
+}
+.fi-intel-h2 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #111827;
+    margin: 20px 0 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #e5e7eb;
+}
+.fi-intel-h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #111827;
+    margin: 16px 0 6px;
+}
+.fi-intel-h4 {
+    font-size: 13px;
+    font-weight: 700;
+    color: #374151;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    margin: 14px 0 5px;
+}
+.fi-intel-list {
+    margin: 0 0 12px 20px;
+    padding: 0;
+    list-style: disc;
+}
+.fi-intel-list li {
+    margin-bottom: 5px;
+    line-height: 1.6;
+    color: #374151;
+}
+.fi-intel-hr {
+    border: none;
+    border-top: 1px solid #e5e7eb;
+    margin: 16px 0;
+}
+.fi-intel-code {
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-size: 12px;
+    font-family: ui-monospace, 'Cascadia Code', monospace;
+    color: #1d4ed8;
+}
+
+/* ── Saved-state card chrome ──────────────────────────────────────────────── */
+
+.fi-intel-action-card--saved {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 1px #6366f1;
+}
+
+.fi-intel-saved-bar {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #e5e7eb;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.fi-intel-saved-meta {
+    font-size: 11px;
+    color: #9ca3af;
+    line-height: 1.4;
+}
+
+.fi-intel-stale-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    background: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fde68a;
+    border-radius: 4px;
+    padding: 2px 7px;
+    align-self: flex-start;
+}
+
+.fi-intel-saved-actions {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.fi-intel-view-btn,
+.fi-intel-regen-btn,
+.fi-intel-delete-btn {
+    font-size: 12px;
+    padding: 3px 10px;
+    border-radius: 5px;
+    border: 1px solid #d1d5db;
+    background: #fff;
+    cursor: pointer;
+    color: #374151;
+    line-height: 1.5;
+    transition: background 0.1s, border-color 0.1s;
+}
+
+.fi-intel-view-btn:hover {
+    background: #f0fdf4;
+    border-color: #4ade80;
+    color: #166534;
+}
+
+.fi-intel-regen-btn:hover {
+    background: #eff6ff;
+    border-color: #93c5fd;
+    color: #1d4ed8;
+}
+
+.fi-intel-delete-btn {
+    color: #9ca3af;
+}
+
+.fi-intel-delete-btn:hover {
+    background: #fef2f2;
+    border-color: #fca5a5;
+    color: #dc2626;
+}
+
+/* ── Output panel flash highlight on new generation ──────────────────────── */
+
+@keyframes fi-panel-flash {
+    0%   { box-shadow: 0 0 0 3px #6366f1; }
+    100% { box-shadow: none; }
+}
+
+.fi-intel-output-flash {
+    animation: fi-panel-flash 0.8s ease-out forwards;
+}
+
+/* ── Output panel context line (scan count + saved date) ─────────────────── */
+
+.fi-intel-output-context {
+    font-size: 12px;
+    color: #9ca3af;
+    margin-left: 10px;
+    font-weight: 400;
+}
+
+
+
+@media (max-width: 900px) {
+    .fi-briefing-grid--3 { grid-template-columns: 1fr 1fr; }
+    .fi-briefing-grid--2 { grid-template-columns: 1fr; }
+    .fi-pain-row { grid-template-columns: 160px 1fr 36px; }
+}
+
+@media (max-width: 600px) {
+    .fi-briefing-grid--3 { grid-template-columns: 1fr; }
+    .fi-intel-actions-grid { grid-template-columns: 1fr; }
+    .fi-pain-row { grid-template-columns: 1fr; }
+    .fi-pain-bar-wrap, .fi-pain-count { display: none; }
+}
+
+/* ============================================================
+   Market Intel — Filter Bar
+   ============================================================ */
+
+.fi-intel-filter-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 12px 18px;
+    margin-bottom: 10px;
+}
+
+.fi-intel-filter-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #374151;
+}
+
+.fi-intel-filter-label {
+    font-weight: 600;
+    color: #6b7280;
+    white-space: nowrap;
+}
+
+.fi-intel-filter-summary {
+    color: #374151;
+}
+
+.fi-intel-filter-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.fi-intel-filter-select {
+    font-size: 13px;
+    padding: 5px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background: #f9fafb;
+    color: #374151;
+    cursor: pointer;
+    height: 32px;
+}
+
+.fi-intel-filter-select:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 2px rgba(99,102,241,0.15);
+}
+
+.fi-intel-filter-reset {
+    font-size: 12px;
+    padding: 4px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background: #f9fafb;
+    color: #6b7280;
+    cursor: pointer;
+    height: 32px;
+    line-height: 1;
+}
+
+.fi-intel-filter-reset:hover {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+/* Signal quality strip */
+.fi-intel-signal-strip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 18px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: #374151;
+}
+
+.fi-intel-signal-strip--warn {
+    background: #fef2f2;
+    border-color: #fecaca;
+    color: #991b1b;
+}
+
+.fi-signal-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.fi-signal-badge--strong   { background: #dcfce7; color: #166534; }
+.fi-signal-badge--moderate { background: #fef9c3; color: #854d0e; }
+.fi-signal-badge--limited  { background: #fee2e2; color: #991b1b; }
+
+/* ============================================================
+   Market Intel — Tier Groups
+   ============================================================ */
+
+.fi-intel-tier {
+    margin-bottom: 32px;
+}
+
+.fi-intel-tier-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f3f4f6;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.fi-intel-tier-label {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #374151;
+    margin-right: 8px;
+}
+
+.fi-intel-tier-subtitle {
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+    color: #9ca3af;
+}
+
+.fi-intel-tier-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+
+.fi-intel-tier-badge--unlocked {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.fi-intel-tier-badge--locked {
+    background: #f3f4f6;
+    color: #6b7280;
+}
+
+.fi-intel-tier-progress {
+    font-weight: 400;
+    color: #9ca3af;
+    font-size: 11px;
+}
+
+/* ============================================================
+   Market Intel — Platform selector row (Social Media card)
+   ============================================================ */
+
+.fi-intel-platform-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+}
+
+.fi-intel-platform-select {
+    flex: 1;
+    min-width: 120px;
+    font-size: 13px;
+    padding: 5px 8px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    height: 32px;
+}
+
+/* Output panel — context line */
+.fi-intel-output-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.fi-intel-output-context {
+    font-size: 12px;
+    color: #9ca3af;
+    font-weight: 400;
+}
+
+@media (max-width: 780px) {
+    .fi-intel-filter-bar { flex-direction: column; align-items: flex-start; }
+    .fi-intel-filter-right { width: 100%; }
+    .fi-intel-filter-select { flex: 1; }
+    .fi-intel-tier-header { flex-direction: column; align-items: flex-start; }
+}
+
+/* ============================================================
+   Bulk Scan Tab
+   ============================================================ */
+
+.fi-bulk-wrap {
+    max-width: 1060px;
+    padding-top: 24px;
+}
+
+/* ── Cron health banners ───────────────────────────────────── */
+.fi-bulk-cron-banner {
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+.fi-bulk-cron-banner code {
+    background: rgba(0,0,0,.08);
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+.fi-bulk-cron-banner--error {
+    background: #fef2f2;
+    border: 1px solid #fca5a5;
+    color: #991b1b;
+}
+.fi-bulk-cron-banner--warn {
+    background: #fffbeb;
+    border: 1px solid #fcd34d;
+    color: #92400e;
+}
+
+/* ── Two-column layout ─────────────────────────────────────── */
+.fi-bulk-columns {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 24px;
+    align-items: start;
+}
+
+@media (max-width: 900px) {
+    .fi-bulk-columns { grid-template-columns: 1fr; }
+}
+
+/* ── Section heading ───────────────────────────────────────── */
+.fi-bulk-heading {
+    font-size: 17px;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 6px;
+}
+
+.fi-bulk-intro {
+    font-size: 13px;
+    color: #6b7280;
+    margin: 0 0 20px;
+    line-height: 1.6;
+}
+
+/* ── Upload zone — the hero ────────────────────────────────── */
+.fi-bulk-upload-zone {
+    position: relative;
+    border: 2px dashed #c7d2fe;
+    border-radius: 14px;
+    padding: 52px 32px;
+    text-align: center;
+    background: linear-gradient(145deg, #f5f7ff 0%, #eef2ff 100%);
+    cursor: pointer;
+    transition: border-color .18s ease, background .18s ease, box-shadow .18s ease;
+}
+
+.fi-bulk-upload-zone:hover {
+    border-color: #6366f1;
+    background: linear-gradient(145deg, #eef2ff 0%, #e0e7ff 100%);
+    box-shadow: 0 0 0 4px rgba(99,102,241,.08);
+}
+
+.fi-bulk-upload-zone--over {
+    border-color: #4f46e5;
+    background: linear-gradient(145deg, #e0e7ff 0%, #c7d2fe 100%);
+    box-shadow: 0 0 0 4px rgba(79,70,229,.12);
+}
+
+.fi-bulk-upload-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+    filter: drop-shadow(0 2px 6px rgba(99,102,241,.25));
+}
+
+.fi-bulk-upload-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1e1b4b;
+    margin-bottom: 6px;
+}
+
+.fi-bulk-upload-browse {
+    background: none;
+    border: none;
+    color: #4f46e5;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.fi-bulk-upload-browse:hover { color: #3730a3; }
+
+.fi-bulk-upload-hint {
+    font-size: 12px;
+    color: #9ca3af;
+    margin-top: 2px;
+}
+
+.fi-bulk-csv-hidden { display: none; }
+
+/* ── File loaded — preview card ────────────────────────────── */
+.fi-bulk-file-preview {
+    border: 1px solid #e0e7ff;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(99,102,241,.08);
+}
+
+.fi-bulk-file-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: linear-gradient(90deg, #f5f7ff, #eef2ff);
+    border-bottom: 1px solid #e0e7ff;
+}
+
+.fi-bulk-file-icon { font-size: 18px; }
+
+.fi-bulk-file-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1e1b4b;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.fi-bulk-file-rows {
+    font-size: 12px;
+    font-weight: 600;
+    color: #4f46e5;
+    background: #e0e7ff;
+    padding: 2px 8px;
+    border-radius: 99px;
+    white-space: nowrap;
+}
+
+.fi-bulk-file-clear {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    font-size: 15px;
+    padding: 0 2px;
+    line-height: 1;
+    transition: color .15s;
+}
+.fi-bulk-file-clear:hover { color: #dc2626; }
+
+.fi-bulk-preview-table-wrap {
+    overflow-x: auto;
+    max-height: 180px;
+    overflow-y: auto;
+}
+
+.fi-bulk-preview-table {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    width: 100%;
+}
+
+.fi-bulk-preview-table th {
+    background: #f9fafb;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: #6b7280;
+    padding: 8px 14px;
+}
+
+.fi-bulk-preview-table td {
+    font-size: 12px;
+    color: #374151;
+    padding: 7px 14px;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+/* ── Actions row ───────────────────────────────────────────── */
+.fi-bulk-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.fi-bulk-btn {
+    height: 36px;
+    padding: 0 20px;
+    font-size: 13px;
+    border-radius: 7px !important;
+    font-weight: 600 !important;
+}
+
+.fi-bulk-btn--danger {
+    color: #dc2626 !important;
+    border-color: #fca5a5 !important;
+}
+
+.fi-bulk-btn--warn {
+    color: #b45309 !important;
+    border-color: #fcd34d !important;
+    background: #fffbeb !important;
+}
+
+.fi-bulk-btn--warn-sm {
+    color: #b45309 !important;
+    border-color: #fcd34d !important;
+    font-size: 11px !important;
+    padding: 2px 8px !important;
+}
+
+.fi-bulk-line-count {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+/* ── Sample download ───────────────────────────────────────── */
+.fi-bulk-sample-row {
+    margin-top: 12px;
+    font-size: 12px;
+    color: #9ca3af;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.fi-bulk-sample-link {
+    color: #6366f1;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 12px;
+}
+.fi-bulk-sample-link:hover { text-decoration: underline; }
+
+/* ── Cost estimate panel ───────────────────────────────────── */
+.fi-bulk-estimate-col {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,.06);
+}
+
+.fi-bulk-estimate-heading {
+    font-size: 13px;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
+    padding: 14px 18px 12px;
+    border-bottom: 1px solid #f3f4f6;
+    background: #f9fafb;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+}
+
+.fi-bulk-estimate-model {
+    font-size: 12px;
+    color: #374151;
+    padding: 10px 18px;
+    border-bottom: 1px solid #f3f4f6;
+    background: #fafafa;
+}
+
+.fi-bulk-estimate-grid {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 18px 4px;
+    gap: 0;
+}
+
+.fi-bulk-est-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: #374151;
+    padding: 5px 0;
+    border-bottom: 1px solid #f9fafb;
+}
+
+.fi-bulk-est-row--indent .fi-bulk-est-label {
+    padding-left: 12px;
+    color: #9ca3af;
+    font-size: 11px;
+}
+.fi-bulk-est-row--indent .fi-bulk-est-value {
+    color: #9ca3af;
+    font-size: 11px;
+}
+
+.fi-bulk-est-divider {
+    border-top: 1px solid #e5e7eb;
+    margin: 6px 0;
+}
+
+.fi-bulk-est-row--cost {
+    padding: 8px 0 4px;
+}
+.fi-bulk-est-row--cost .fi-bulk-est-label {
+    font-weight: 600;
+    font-size: 13px;
+    color: #111827;
+}
+.fi-bulk-est-row--cost .fi-bulk-est-value {
+    font-weight: 800;
+    font-size: 18px;
+    color: #059669;
+}
+
+.fi-bulk-est-source {
+    font-size: 11px;
+    color: #9ca3af;
+    font-style: italic;
+    padding: 4px 18px 12px;
+    margin: 0;
+}
+
+.fi-bulk-est-notice {
+    font-size: 12px;
+    color: #92400e;
+    background: #fffbeb;
+    border-top: 1px solid #fde68a;
+    padding: 12px 18px;
+    line-height: 1.55;
+}
+.fi-bulk-est-notice a {
+    color: #92400e;
+    font-weight: 700;
+}
+
+/* ── Confirmation panel ────────────────────────────────────── */
+.fi-bulk-confirm-inner {
+    max-width: 540px;
+}
+
+.fi-bulk-confirm-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 16px 0;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.fi-bulk-confirm-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    padding: 10px 16px;
+    border-bottom: 1px solid #f3f4f6;
+}
+.fi-bulk-confirm-row:last-child { border-bottom: none; }
+
+.fi-bulk-dup-header {
+    font-size: 13px;
+    font-weight: 600;
+    color: #92400e;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 8px;
+}
+
+.fi-bulk-dup-list {
+    margin: 0 0 10px 16px;
+    font-size: 12px;
+    color: #374151;
+}
+
+.fi-bulk-force-label {
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    color: #374151;
+    margin-bottom: 16px;
+}
+
+.fi-bulk-confirm-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* ── Monitor ───────────────────────────────────────────────── */
+.fi-bulk-monitor-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.fi-bulk-monitor-meta {
+    font-size: 12px;
+    color: #9ca3af;
+    margin: 4px 0 0;
+}
+
+.fi-bulk-monitor-controls {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.fi-bulk-progress-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.fi-bulk-progress-bar {
+    flex: 1;
+    height: 10px;
+    background: #e5e7eb;
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.fi-bulk-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    border-radius: 99px;
+    transition: width .5s ease;
+}
+
+.fi-bulk-progress-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+    white-space: nowrap;
+}
+
+.fi-bulk-tokens-bar {
+    font-size: 12px;
+    color: #6b7280;
+    margin-bottom: 16px;
+}
+
+/* ── Queue table ───────────────────────────────────────────── */
+.fi-bulk-queue-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.fi-bulk-queue-table thead tr { background: #f3f4f6; }
+
+.fi-bulk-queue-table th,
+.fi-bulk-queue-table td {
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid #f3f4f6;
+    vertical-align: middle;
+}
+
+.fi-bulk-queue-table th {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: #6b7280;
+}
+
+.fi-queue-row--scanning td { background: #eff6ff; }
+.fi-queue-row--failed   td { background: #fef2f2; }
+.fi-queue-row--skipped  td { color: #9ca3af; }
+
+/* Score badges in queue table */
+.fi-queue-score {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 6px;
+}
+.fi-score--strong { background: #d1fae5; color: #065f46; }
+.fi-score--avg    { background: #fef3c7; color: #92400e; }
+.fi-score--weak   { background: #fee2e2; color: #991b1b; }
+
+/* Lead link in queue table */
+.fi-queue-lead-link {
+    display: inline-block;
+    font-size: 11px;
+    color: #1d4ed8;
+    text-decoration: none;
+    margin-left: 6px;
+    opacity: .75;
+}
+.fi-queue-lead-link:hover { opacity: 1; text-decoration: underline; }
+
+.fi-bulk-error-msg {
+    font-size: 11px;
+    color: #dc2626;
+    margin-top: 4px;
+}
+
+.fi-spinner-inline {
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    border: 2px solid #6366f1;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: fi-spin .7s linear infinite;
+    vertical-align: middle;
+    margin-right: 4px;
+}
+
+/* ── Complete bar ──────────────────────────────────────────── */
+.fi-bulk-complete-bar {
+    margin-top: 20px;
+    padding: 16px 20px;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.fi-bulk-complete-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* ── Status badges ─────────────────────────────────────────── */
+.fi-bulk-status-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 99px;
+    text-transform: capitalize;
+}
+
+.fi-bulk-status-badge--running   { background:#dbeafe; color:#1d4ed8; }
+.fi-bulk-status-badge--complete  { background:#d1fae5; color:#065f46; }
+.fi-bulk-status-badge--paused    { background:#fef9c3; color:#854d0e; }
+.fi-bulk-status-badge--cancelled { background:#f3f4f6; color:#6b7280; }
+.fi-bulk-status-badge--pending   { background:#f3f4f6; color:#6b7280; }
+
+/* ── History ───────────────────────────────────────────────── */
+.fi-bulk-history {
+    margin-top: 36px;
+    padding-top: 24px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.fi-bulk-history-heading {
+    font-size: 13px;
+    font-weight: 700;
+    color: #374151;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    margin: 0 0 12px;
+}
+
+@media (max-width: 780px) {
+    .fi-bulk-monitor-header { flex-direction: column; }
+    .fi-bulk-queue-table { font-size: 12px; }
+}
+
+/* ── Monitor two-column layout ─────────────────────────────── */
+.fi-bulk-monitor-cols {
+    display: grid;
+    grid-template-columns: 1fr 240px;
+    gap: 20px;
+    align-items: start;
+    margin-top: 4px;
+}
+
+@media (max-width: 900px) {
+    .fi-bulk-monitor-cols { grid-template-columns: 1fr; }
+    .fi-bulk-monitor-right { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+}
+
+/* ── Stats panel (right column) ────────────────────────────── */
+.fi-bulk-monitor-right {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: sticky;
+    top: 32px;
+}
+
+.fi-bulk-stat-card {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 12px 14px;
+}
+
+.fi-bulk-stat-card--wide {
+    width: 100%;
+}
+
+.fi-bulk-stat-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: #9ca3af;
+    margin-bottom: 5px;
+}
+
+.fi-bulk-stat-value {
+    font-size: 22px;
+    font-weight: 800;
+    color: #111827;
+    line-height: 1.1;
+}
+
+.fi-bulk-stat-value--sm {
+    font-size: 13px;
+    font-weight: 600;
+    word-break: break-word;
+}
+
+.fi-bulk-stat-phase {
+    font-size: 11px;
+    color: #6b7280;
+    margin-top: 4px;
+    min-height: 16px;
+    font-style: italic;
+}
+
+/* ── Activity log ───────────────────────────────────────────── */
+.fi-bulk-activity-card {
+    max-height: 220px;
+    overflow: hidden;
+}
+
+.fi-bulk-activity-log {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.fi-bulk-activity-log li {
+    font-size: 11px;
+    color: #6b7280;
+    line-height: 1.4;
+    word-break: break-word;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.fi-bulk-activity-log li:last-child {
+    border-bottom: none;
+}
+
+/* ── Queue status text colours ──────────────────────────────── */
+.fi-qs-queued  { color: #9ca3af; }
+.fi-qs-scanning { color: #2563eb; font-weight: 600; }
+.fi-qs-complete { color: #059669; font-weight: 600; }
+.fi-qs-failed   { color: #dc2626; font-weight: 600; }
+.fi-qs-skipped  { color: #9ca3af; }
+
+/* ============================================================
+   Pipeline Table (Leads + Prospects)
+   ============================================================ */
+
+.fi-pipeline-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.fi-pipeline-search-form {
+    flex: 1;
+    max-width: 320px;
+}
+
+/* ── Section ───────────────────────────────────────────────── */
+.fi-pipeline-section {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.fi-pipeline-pager {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 12px 18px;
+    border-top: 1px solid #e5e7eb;
+    flex-wrap: wrap;
+}
+.fi-pager-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    height: 30px;
+    padding: 0 8px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #374151;
+    border: 1px solid #e5e7eb;
+    background: #fff;
+    text-decoration: none;
+    transition: background .1s;
+}
+.fi-pager-btn:hover { background: #f3f4f6; }
+.fi-pager-btn--active { background: #1d4ed8; border-color: #1d4ed8; color: #fff; }
+.fi-pager-meta { margin-left: 8px; font-size: 12px; color: #9ca3af; }
+
+.fi-pipeline-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    background: #f9fafb;
+    border-bottom: 1px solid #e5e7eb;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.fi-pipeline-section-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.fi-pipeline-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 6px;
+    background: #e5e7eb;
+    color: #374151;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 99px;
+}
+
+.fi-pipeline-section-hint {
+    font-size: 11px;
+    font-weight: 400;
+    color: #9ca3af;
+    margin-left: 4px;
+}
+
+.fi-pipeline-stages {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.fi-pipeline-empty {
+    padding: 24px 18px;
+    font-size: 13px;
+    color: #9ca3af;
+}
+
+.fi-pipeline-empty a {
+    color: #6366f1;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* ── Table ─────────────────────────────────────────────────── */
+.fi-pipeline-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    table-layout: auto;
+}
+
+.fi-pipeline-table thead tr {
+    background: #f3f4f6;
+}
+
+.fi-pipeline-table th {
+    padding: 6px 8px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: #6b7280;
+    border-bottom: 1px solid #e5e7eb;
+    white-space: nowrap;
+}
+
+.fi-pipeline-table td {
+    padding: 6px 8px;
+    border-bottom: 1px solid #f3f4f6;
+    vertical-align: middle;
+}
+
+.fi-pipeline-table tbody tr:last-child td { border-bottom: none; }
+
+/* Column widths */
+.fi-pipeline-cell-name     { width: 15%; min-width: 120px; }
+.fi-pipeline-cell-email    { width: 16%; min-width: 130px; font-size: 12px; word-break: break-all; }
+.fi-pipeline-cell-phone    { width: 9%;  min-width: 110px; font-size: 12px; white-space: nowrap; }
+.fi-pipeline-cell-website  { width: 7%;  min-width: 80px;  font-size: 12px; }
+.fi-pipeline-cell-score    { width: 4%;  min-width: 48px;  text-align: center; }
+.fi-pipeline-cell-pain     { width: 16%; min-width: 140px; }
+.fi-pipeline-cell-status   { width: 10%; min-width: 120px; }
+.fi-pipeline-cell-followup { width: 9%;  min-width: 120px; }
+.fi-pipeline-cell-notes    { width: 10%; min-width: 100px; }
+.fi-pipeline-cell-actions  { width: 8%;  min-width: 100px; white-space: nowrap; }
+
+/* ── Row states ────────────────────────────────────────────── */
+.fi-pipeline-row--hot td { background: #fffbeb; }
+
+.fi-pipeline-row:hover td { background: #f9fafb; }
+.fi-pipeline-row--hot:hover td { background: #fef9e7; }
+
+/* ── Cell content ──────────────────────────────────────────── */
+.fi-pipeline-name {
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 2px;
+    white-space: normal;
+    word-break: break-word;
+}
+
+.fi-pipeline-meta {
+    font-size: 11px;
+    color: #9ca3af;
+    margin-top: 3px;
+    white-space: normal;
+    word-break: break-all;
+    line-height: 1.6;
+}
+
+.fi-pipeline-meta a {
+    display: inline-block;
+    margin-right: 2px;
+}
+
+.fi-pipeline-link {
+    color: #6366f1;
+    text-decoration: none;
+    font-weight: 500;
+}
+.fi-pipeline-link:hover { text-decoration: underline; }
+
+.fi-score-pill {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+}
+
+.fi-pipeline-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 1px 6px;
+    border-radius: 99px;
+    margin-top: 3px;
+    margin-right: 3px;
+}
+
+.fi-pipeline-badge--hot     { background: #fef3c7; color: #92400e; }
+
+.fi-pain-label {
+    display: block !important;
+    margin-bottom: 3px;
+}
+
+.fi-pain-more {
+    display: block;
+    font-size: 10px;
+    color: #9ca3af;
+    margin-top: 2px;
+}
+
+/* ── Pitch output row ──────────────────────────────────────── */
+.fi-pitch-row td {
+    padding: 12px 18px;
+    background: #f8faff;
+    border-bottom: 1px solid #e0e7ff;
+}
+
+.fi-pitch-content {
+    font-size: 13px;
+    line-height: 1.65;
+    color: #374151;
+    white-space: pre-wrap;
+    max-width: 760px;
+}
+
+@media (max-width: 960px) {
+    .fi-pipeline-cell-pain     { display: none; }
+    .fi-pipeline-cell-website  { display: none; }
+    .fi-pipeline-cell-phone    { display: none; }
+    .fi-pipeline-cell-name     { width: 40%; }
+    .fi-pipeline-section-header { flex-direction: column; align-items: flex-start; }
+}
+
+/* ── Snapshot link ─────────────────────────────────────────── */
+.fi-snapshot-link {
+    display: inline-block;
+    margin-top: 3px;
+    font-size: 11px !important;
+    color: #6366f1 !important;
+    font-weight: 500;
+    white-space: nowrap;
+}
+.fi-snapshot-link:hover { text-decoration: underline; }
+
+/* ── Lead Pipeline — new interactive columns ──────────────── */
+.fi-status-select {
+    font-size: 12px;
+    padding: 3px 6px;
+    min-width: 110px;
+}
+.fi-followup-date {
+    font-size: 12px;
+    padding: 3px 6px;
+    width: 130px;
+}
+.fi-followup-date.fi-overdue {
+    border-color: #ef4444;
+    background: #fee2e2;
+    color: #991b1b;
+}
+.fi-notes-field {
+    font-size: 12px;
+    padding: 4px 6px;
+    width: 100%;
+    resize: vertical;
+    min-height: 36px;
+}
+.fi-pipeline-cell-status,
+.fi-pipeline-cell-followup,
+.fi-pipeline-cell-notes,
+.fi-pipeline-cell-actions {
+    vertical-align: middle;
+}
+.fi-gen-pitch-btn, .fi-gen-reply-btn { font-size: 12px !important; }
+
+/* Flash on save */
+@keyframes fi-save-flash {
+    0%   { background: #d1fae5; }
+    100% { background: transparent; }
+}
+.fi-saved-flash td { animation: fi-save-flash .8s ease-out; }
+.fi-input-saved    { animation: fi-save-flash .8s ease-out; }
+
+/* ── Pitch modal ─────────────────────────────────────────── */
+.fi-pitch-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.fi-pitch-modal-inner {
+    background: #fff;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 680px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 60px rgba(0,0,0,.25);
+    overflow: hidden;
+}
+.fi-pitch-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    border-bottom: 1px solid #e5e7eb;
+    background: #f9fafb;
+}
+.fi-pitch-modal-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #6b7280;
+    line-height: 1;
+}
+.fi-pitch-modal-body {
+    flex: 1;
+    margin: 0;
+    padding: 16px 18px;
+    border: none;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #374151;
+    resize: vertical;
+    min-height: 320px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.fi-pitch-modal-footer {
+    padding: 12px 18px;
+    border-top: 1px solid #e5e7eb;
+    text-align: right;
+    background: #f9fafb;
+}
+.fi-pitch-modal-subject {
+    padding: 8px 18px;
+    background: #f3f4f6;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 12px;
+    color: #374151;
+    word-break: break-word;
+}
+.fi-pipeline-domain {
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* ── Sortable column headers ─────────────────────────────────────────── */
+.fi-pipeline-table th[data-sort] {
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+}
+.fi-pipeline-table th[data-sort]:hover { background: #e5e7eb; }
+.fi-pipeline-table th[data-sort]::after {
+    content: ' ⇅';
+    font-size: 10px;
+    opacity: 0.4;
+}
+.fi-pipeline-table th[data-sort].sort-asc::after  { content: ' ↑'; opacity: 1; }
+.fi-pipeline-table th[data-sort].sort-desc::after { content: ' ↓'; opacity: 1; }
+
+/* ── Business name report link ───────────────────────────────────────── */
+.fi-pipeline-name-link {
+    font-weight: 600;
+    color: #1d4ed8;
+    text-decoration: none;
+    cursor: pointer;
+}
+.fi-pipeline-name-link:hover { text-decoration: underline; }
+.fi-pipeline-sub { font-size: 11px; color: #9ca3af; margin-top: 2px; }
+
+/* ── Report iframe modal ─────────────────────────────────────────────── */
+.fi-report-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.fi-report-modal-inner {
+    background: #fff;
+    border-radius: 10px;
+    width: 90vw;
+    height: 88vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0,0,0,.3);
+}
+.fi-report-modal-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    background: #111827;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+.fi-report-modal-bar a {
+    color: #93c5fd;
+    font-size: 12px;
+    font-weight: 400;
+    text-decoration: none;
+    margin-right: 12px;
+}
+.fi-report-modal-bar a:hover { text-decoration: underline; }
+.fi-report-modal-close {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    font-size: 20px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 4px;
+}
+.fi-report-modal-close:hover { color: #fff; }
+.fi-report-modal-iframe {
+    flex: 1;
+    width: 100%;
+    border: none;
+}
+
+/* ==========================================================================
+   F! Reviews — Market Leads > Reviews
+   ========================================================================== */
+
+/* ── Reviews page wrapper ──────────────────────────────────────────────── */
+.fi-reviews-wrap {
+    max-width: 1200px;
+    margin-top: 8px;
+}
+.fi-reviews-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+.fi-reviews-intro {
+    font-size: 13px;
+    color: #374151;
+    margin: 0;
+    max-width: 620px;
+}
+
+/* ── Toolbar ───────────────────────────────────────────────────────────── */
+.fi-reviews-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.fi-reviews-search-form {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+.fi-reviews-toolbar-right {
+    font-size: 13px;
+}
+.fi-reviews-status-link {
+    color: #6b7280;
+    text-decoration: none;
+    font-size: 13px;
+}
+.fi-reviews-status-link:hover { color: #1d4ed8; text-decoration: underline; }
+
+/* ── Empty state ───────────────────────────────────────────────────────── */
+.fi-reviews-empty {
+    padding: 40px 24px;
+    text-align: center;
+    background: #f9fafb;
+    border: 1px dashed #d1d5db;
+    border-radius: 6px;
+    color: #6b7280;
+    font-size: 13px;
+}
+.fi-reviews-empty p { margin: 0 0 8px; }
+.fi-reviews-empty p:last-child { margin: 0; }
+
+/* ── Records table ─────────────────────────────────────────────────────── */
+.fi-reviews-table {
+    border-collapse: collapse;
+    font-size: 13px;
+}
+.fi-reviews-table th {
+    background: #f3f4f6;
+    font-weight: 600;
+    font-size: 12px;
+    color: #374151;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 8px 12px;
+    border-bottom: 1px solid #e5e7eb;
+    white-space: nowrap;
+}
+.fi-reviews-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #f3f4f6;
+    vertical-align: middle;
+}
+.fi-reviews-table tbody tr:last-child td { border-bottom: none; }
+.fi-reviews-table tbody tr:hover td { background: #fafafa; }
+
+.fi-reviews-cell-name    { width: 18%; min-width: 140px; }
+.fi-reviews-cell-domain  { width: 14%; min-width: 110px; font-size: 12px; }
+.fi-reviews-cell-features{ width: 16%; min-width: 120px; }
+.fi-reviews-cell-tracking{ width: 20%; min-width: 150px; font-size: 12px; color: #6b7280; }
+.fi-reviews-cell-status  { width: 10%; min-width: 90px;  white-space: nowrap; }
+.fi-reviews-cell-seen    { width: 10%; min-width: 90px;  font-size: 12px; color: #9ca3af; }
+.fi-reviews-cell-actions { width: 8%;  min-width: 80px;  text-align: right; }
+
+.fi-reviews-name-link {
+    font-weight: 600;
+    color: #1d4ed8;
+    text-decoration: none;
+}
+.fi-reviews-name-link:hover { text-decoration: underline; }
+.fi-reviews-sub {
+    font-size: 11px;
+    color: #9ca3af;
+    margin-top: 2px;
+}
+
+/* ── Feature badges ────────────────────────────────────────────────────── */
+.fi-reviews-badge {
+    display: inline-block;
+    font-size: 11px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    margin: 1px 2px 1px 0;
+    font-weight: 500;
+}
+.fi-reviews-badge--on {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+/* ── Tracking summary ──────────────────────────────────────────────────── */
+.fi-reviews-tracking-summary {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+/* ── Manage / Setup buttons in pipeline ───────────────────────────────── */
+.fi-reviews-manage-btn {
+    background: #f0fdf4 !important;
+    border-color: #16a34a !important;
+    color: #15803d !important;
+    font-size: 11px !important;
+    margin-left: 4px;
+}
+.fi-reviews-manage-btn:hover {
+    background: #dcfce7 !important;
+}
+.fi-reviews-setup-btn {
+    font-size: 11px !important;
+    margin-left: 4px;
+}
+
+/* ── Detail screen ─────────────────────────────────────────────────────── */
+.fi-reviews-detail-wrap {
+    max-width: 1100px;
+}
+.fi-reviews-breadcrumb {
+    font-size: 13px;
+    color: #6b7280;
+    margin-bottom: 16px;
+}
+.fi-reviews-breadcrumb a {
+    color: #2563eb;
+    text-decoration: none;
+}
+.fi-reviews-breadcrumb a:hover { text-decoration: underline; }
+.fi-reviews-breadcrumb-sep { margin: 0 6px; }
+
+.fi-reviews-detail-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.fi-reviews-detail-title {
+    margin: 0 0 4px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+}
+.fi-reviews-detail-domain {
+    font-size: 13px;
+    color: #6b7280;
+    text-decoration: none;
+}
+.fi-reviews-detail-domain:hover { color: #1d4ed8; text-decoration: underline; }
+.fi-reviews-detail-header-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+/* Two-column grid */
+.fi-reviews-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 8px;
+}
+@media (max-width: 960px) {
+    .fi-reviews-detail-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Toggle rows ───────────────────────────────────────────────────────── */
+.fi-reviews-toggle-row {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 14px;
+    padding: 10px 12px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    transition: background 0.15s;
+}
+.fi-reviews-toggle-row:hover { background: #f3f4f6; }
+.fi-reviews-toggle-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+    width: 100%;
+}
+.fi-reviews-toggle-label input[type=checkbox] {
+    margin-top: 3px;
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+.fi-reviews-toggle-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.fi-reviews-toggle-text strong {
+    font-size: 13px;
+    color: #111827;
+}
+
+/* ── Display + attribution config panels ──────────────────────────────── */
+.fi-reviews-display-config,
+.fi-reviews-attribution-config {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 6px;
+    padding: 14px 16px;
+}
+
+/* ── Snippet box ───────────────────────────────────────────────────────── */
+.fi-reviews-snippet-box code {
+    word-break: break-all;
+    font-size: 11px;
+    line-height: 1.6;
+    display: block;
+    padding: 8px 0;
+}
+
+/* ── QR preview ────────────────────────────────────────────────────────── */
+.fi-reviews-qr-preview {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 0;
+}
+.fi-reviews-qr-preview img {
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    display: block;
+}
+.fi-reviews-qr-download {
+    display: inline-block;
+}
+
+/* ── Email template box ────────────────────────────────────────────────── */
+.fi-reviews-email-box {
+    max-height: 200px;
+    overflow-y: auto;
+    position: relative;
+}
+.fi-reviews-email-box pre {
+    white-space: pre-wrap;
+    font-size: 12px;
+    line-height: 1.6;
+    margin: 0;
+    padding: 8px 0;
+    color: #374151;
+}
+
+/* ── Tracking surfaces table ───────────────────────────────────────────── */
+.fi-reviews-tracking-table {
+    font-size: 12px;
+    border-collapse: collapse;
+}
+.fi-reviews-tracking-table th {
+    background: #f3f4f6;
+    font-size: 11px;
+    font-weight: 600;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    padding: 6px 8px;
+    border-bottom: 1px solid #e5e7eb;
+}
+.fi-reviews-tracking-table td {
+    padding: 7px 8px;
+    border-bottom: 1px solid #f3f4f6;
+    vertical-align: middle;
+}
+.fi-reviews-tracking-table tbody tr:last-child td { border-bottom: none; }
+
+.fi-reviews-surface-delete {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #9ca3af;
+    font-size: 18px;
+    line-height: 1;
+    padding: 0 4px;
+    transition: color 0.15s;
+}
+.fi-reviews-surface-delete:hover { color: #dc2626; }
+
+/* ── Add surface row ───────────────────────────────────────────────────── */
+.fi-reviews-add-surface {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+    padding: 10px 0 0;
+    border-top: 1px dashed #e5e7eb;
+}
+.fi-reviews-add-surface .fi-hint {
+    width: 100%;
+    margin: 2px 0 0;
+}
+
+/* ── Input state feedback ──────────────────────────────────────────────── */
+.fi-input-saved {
+    border-color: #16a34a !important;
+    box-shadow: 0 0 0 2px rgba(22,163,74,.15) !important;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.fi-input-error {
+    border-color: #dc2626 !important;
+    box-shadow: 0 0 0 2px rgba(220,38,38,.15) !important;
+}
+
+/* ── Hidden utility ────────────────────────────────────────────────────── */
+.fi-hidden { display: none !important; }
+
+
+/* ==========================================================================
+   F! Reviews — Stepped onboarding UI
+   ========================================================================== */
+
+/* ── Step rail ─────────────────────────────────────────────────────────── */
+.fi-reviews-step-rail {
+    display: flex;
+    align-items: center;
+    margin: 24px 0 0;
+    padding: 20px 24px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+    gap: 0;
+}
+
+.fi-reviews-step-rail .fi-reviews-step-node {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: none;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    padding: 8px 14px;
+    cursor: pointer;
+    text-align: left;
+    flex-shrink: 0;
+    transition: background 0.15s, border-color 0.15s;
+}
+.fi-reviews-step-rail .fi-reviews-step-node:hover {
+    background: #f3f4f6;
+}
+.fi-reviews-step-rail .fi-reviews-step-node--active {
+    background: #eff6ff;
+    border-color: #3b82f6;
+}
+.fi-reviews-step-rail .fi-reviews-step-node--done {
+    opacity: 0.85;
+}
+.fi-reviews-step-rail .fi-reviews-step-node--pending {
+    opacity: 0.45;
+    cursor: default;
+}
+
+.fi-reviews-step-rail .fi-reviews-step-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+    background: #e5e7eb;
+    color: #374151;
+}
+.fi-reviews-step-rail .fi-reviews-step-node--active .fi-reviews-step-rail .fi-reviews-step-num {
+    background: #3b82f6;
+    color: #fff;
+}
+.fi-reviews-step-rail .fi-reviews-step-node--done .fi-reviews-step-rail .fi-reviews-step-num {
+    background: #16a34a;
+    color: #fff;
+}
+
+.fi-reviews-step-rail .fi-reviews-step-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+.fi-reviews-step-rail .fi-reviews-step-info strong {
+    font-size: 13px;
+    color: #111827;
+    font-weight: 600;
+}
+.fi-reviews-step-rail .fi-reviews-step-info span {
+    font-size: 11px;
+    color: #6b7280;
+    font-weight: 400;
+}
+
+.fi-reviews-step-rail .fi-reviews-step-connector {
+    flex: 1;
+    height: 2px;
+    background: #e5e7eb;
+    margin: 0 4px;
+    min-width: 20px;
+}
+.fi-reviews-step-rail .fi-reviews-step-connector--done {
+    background: #16a34a;
+}
+
+/* ── Step panels ───────────────────────────────────────────────────────── */
+.fi-reviews-step-panel {
+    margin-top: 0;
+}
+.fi-reviews-step-panel-inner {
+    padding: 28px 24px 24px;
+    border: 1px solid #e5e7eb;
+    border-top: 2px solid #3b82f6;
+    border-radius: 0 0 8px 8px;
+    background: #fff;
+}
+.fi-reviews-step-context {
+    font-size: 13px;
+    color: #374151;
+    margin: 0 0 22px;
+    max-width: 580px;
+    line-height: 1.6;
+}
+
+/* ── Step footer ───────────────────────────────────────────────────────── */
+.fi-reviews-step-footer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid #f3f4f6;
+    flex-wrap: wrap;
+}
+
+/* ── Feature groups ────────────────────────────────────────────────────── */
+.fi-reviews-feature-group {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 4px 0 8px;
+}
+.fi-reviews-feature-group-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #6b7280;
+    padding: 10px 16px 6px;
+    border-bottom: 1px solid #f3f4f6;
+    margin-bottom: 4px;
+}
+.fi-reviews-feature-group .fi-reviews-toggle-row {
+    margin-bottom: 0;
+    border: none;
+    border-radius: 0;
+    background: none;
+    padding: 8px 16px;
+}
+.fi-reviews-feature-group .fi-reviews-toggle-row:hover {
+    background: #f3f4f6;
+}
+
+/* ── Sub-settings (display widget, attribution) ────────────────────────── */
+.fi-reviews-subsettings {
+    margin: 4px 16px 4px 46px;
+    padding: 12px 16px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+}
+.fi-reviews-subsetting-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+.fi-reviews-subsetting-row:last-child { margin-bottom: 0; }
+.fi-label-sm { font-size: 12px; min-width: 110px; }
+
+/* ── Domain row ────────────────────────────────────────────────────────── */
+.fi-reviews-domain-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+.fi-reviews-domain-prefix {
+    padding: 7px 10px;
+    background: #f3f4f6;
+    border: 1px solid #d1d5db;
+    border-right: none;
+    border-radius: 6px 0 0 6px;
+    font-size: 13px;
+    color: #6b7280;
+    white-space: nowrap;
+    line-height: 1.4;
+}
+.fi-reviews-domain-row .fi-input {
+    border-radius: 0 6px 6px 0;
+}
+
+/* ── Test link ─────────────────────────────────────────────────────────── */
+.fi-reviews-test-link {
+    display: inline-block;
+    font-size: 12px;
+    color: #2563eb;
+    text-decoration: none;
+    margin-top: 4px;
+}
+.fi-reviews-test-link:hover { text-decoration: underline; }
+
+/* ── Missing domain indicator ──────────────────────────────────────────── */
+.fi-reviews-detail-domain--missing {
+    font-size: 13px;
+    color: #d97706;
+    font-style: italic;
+}
+
+/* ── Deploy callout ────────────────────────────────────────────────────── */
+.fi-reviews-deploy-callout {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 6px;
+    padding: 14px 18px;
+    font-size: 13px;
+    color: #1e40af;
+    margin-bottom: 28px;
+    line-height: 1.6;
+}
+.fi-reviews-deploy-callout--live {
+    background: #f0fdf4;
+    border-color: #bbf7d0;
+    color: #14532d;
+}
+
+/* ── Deploy sections ───────────────────────────────────────────────────── */
+.fi-reviews-deploy-section {
+    margin-bottom: 24px;
+}
+.fi-reviews-deploy-section-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 6px;
+}
+.fi-reviews-deploy-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    background: #111827;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+.fi-reviews-optional-tag {
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #9ca3af;
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    border-radius: 3px;
+    padding: 1px 5px;
+    margin-left: 2px;
+}
+
+/* ── Deploy row (QR + email side by side) ──────────────────────────────── */
+.fi-reviews-deploy-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 0;
+}
+.fi-reviews-deploy-section--half {
+    margin-bottom: 0;
+}
+@media (max-width: 780px) {
+    .fi-reviews-deploy-row { grid-template-columns: 1fr; }
+}
+
+/* ── Progress pips in list ─────────────────────────────────────────────── */
+.fi-reviews-step-pip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 700;
+    margin-right: 3px;
+}
+.fi-reviews-step-pip--done {
+    background: #16a34a;
+    color: #fff;
+}
+.fi-reviews-step-pip--next {
+    background: #3b82f6;
+    color: #fff;
+}
+.fi-reviews-step-pip--todo {
+    background: #e5e7eb;
+    color: #9ca3af;
+}
+
+
+/* ==========================================================================
+   F! Reviews — Deploy panel cards (Step 3)
+   ========================================================================== */
+
+/* ── Live status dot in callout ────────────────────────────────────────── */
+.fi-reviews-live-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #16a34a;
+    border-radius: 50%;
+    margin-right: 6px;
+    vertical-align: middle;
+    animation: fi-pulse 2s infinite;
+}
+@keyframes fi-pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.4; }
+}
+
+/* ── Deliverables grid ─────────────────────────────────────────────────── */
+.fi-rv-deliverables {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 24px 0;
+}
+@media (max-width: 1100px) {
+    .fi-rv-deliverables { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 700px) {
+    .fi-rv-deliverables { grid-template-columns: 1fr; }
+}
+
+/* ── Individual deliverable card ───────────────────────────────────────── */
+.fi-rv-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 18px 18px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: box-shadow 0.15s;
+}
+.fi-rv-card:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,.07);
+}
+
+.fi-rv-card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+.fi-rv-card-icon {
+    font-size: 20px;
+    line-height: 1;
+    flex-shrink: 0;
+    color: #374151;
+    margin-top: 1px;
+}
+.fi-rv-card-header strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #111827;
+    line-height: 1.3;
+}
+.fi-rv-card-sub {
+    display: block;
+    font-size: 11px;
+    color: #9ca3af;
+    margin-top: 1px;
+}
+.fi-rv-card-desc {
+    font-size: 12px;
+    color: #6b7280;
+    line-height: 1.6;
+    margin: 0;
+    flex-grow: 1;
+}
+
+/* ── Snippet card ──────────────────────────────────────────────────────── */
+.fi-rv-snippet-box {
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    border-radius: 5px;
+    padding: 10px 12px;
+    overflow-x: auto;
+}
+.fi-rv-snippet-box code {
+    font-size: 11px;
+    line-height: 1.6;
+    word-break: break-all;
+    color: #1e40af;
+    white-space: pre-wrap;
+}
+
+/* ── QR card ───────────────────────────────────────────────────────────── */
+.fi-rv-qr-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 12px 0 4px;
+}
+#fi-rv-qr-canvas {
+    line-height: 0;
+}
+#fi-rv-qr-canvas canvas,
+#fi-rv-qr-canvas img {
+    display: block;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+}
+.fi-rv-qr-actions {
+    display: flex;
+    align-items: center;
+    margin-top: 4px;
+}
+
+/* ── Email card ────────────────────────────────────────────────────────── */
+.fi-rv-email-box {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 5px;
+    padding: 10px 12px;
+    max-height: 160px;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+.fi-rv-email-box pre {
+    margin: 0;
+    font-size: 11px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    color: #374151;
+    font-family: inherit;
+}
+
+/* ── Generic card copy button ──────────────────────────────────────────── */
+.fi-rv-copy-btn {
+    align-self: flex-start;
+    margin-top: auto;
+    font-size: 12px !important;
+}
+
+/* ── Tracking section ──────────────────────────────────────────────────── */
+.fi-rv-tracking-section {
+    border-top: 1px solid #f3f4f6;
+    padding-top: 20px;
+    margin-top: 4px;
+}
+.fi-rv-tracking-header {
+    margin-bottom: 14px;
+}
+.fi-rv-tracking-header strong {
+    font-size: 13px;
+    font-weight: 600;
+    color: #111827;
+}
+
+/* ── Surface cards ─────────────────────────────────────────────────────── */
+.fi-rv-surfaces {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin-bottom: 14px;
+}
+.fi-rv-surface-card {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+}
+.fi-rv-surface-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+}
+.fi-rv-surface-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #111827;
+    line-height: 1.3;
+}
+.fi-rv-surface-param {
+    font-size: 11px;
+}
+.fi-rv-surface-param code {
+    background: #e5e7eb;
+    padding: 2px 6px;
+    border-radius: 3px;
+    color: #374151;
+}
+
+/* ── Surface stats ─────────────────────────────────────────────────────── */
+.fi-rv-surface-stats {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.fi-rv-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.2;
+}
+.fi-rv-stat-num {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+}
+.fi-rv-stat-label {
+    font-size: 10px;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.fi-rv-stat-sep {
+    font-size: 14px;
+    color: #d1d5db;
+    margin-top: -4px;
+}
+.fi-rv-stat-ctr {
+    font-size: 11px;
+    font-weight: 600;
+    color: #059669;
+    background: #d1fae5;
+    border-radius: 3px;
+    padding: 2px 6px;
+    margin-left: 4px;
+}
+
+/* ── Add surface row ───────────────────────────────────────────────────── */
+.fi-rv-add-surface {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 12px 0 0;
+    border-top: 1px dashed #e5e7eb;
+}
+.fi-rv-add-surface .fi-hint {
+    width: 100%;
+    margin: 2px 0 0;
+}
+

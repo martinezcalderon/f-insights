@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feBlend in="SourceGraphic" mode="multiply"/>
+      <feComposite in2="SourceGraphic" operator="in"/>
+    </filter>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d1a0f"/>
+      <stop offset="100%" style="stop-color:#0a1208"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="256" height="256" rx="24" fill="url(#bg)"/>
+
+  <!-- Wool puffs -->
+  <circle cx="90" cy="138" r="42" fill="#e8e0d0"/>
+  <circle cx="128" cy="118" r="46" fill="#ece4d4"/>
+  <circle cx="166" cy="132" r="40" fill="#e4dcc8"/>
+  <circle cx="105" cy="162" r="38" fill="#eae2d2"/>
+  <circle cx="148" cy="158" r="42" fill="#ece4d4"/>
+  <!-- Grime wash -->
+  <ellipse cx="128" cy="148" rx="80" ry="52" fill="#2a1a0a" opacity="0.14"/>
+
+  <!-- Head -->
+  <rect x="96" y="52" width="64" height="56" rx="14" fill="#2a2018"/>
+  <!-- Ears -->
+  <ellipse cx="93" cy="62" rx="11" ry="18" fill="#2a2018" transform="rotate(-20,93,62)"/>
+  <ellipse cx="163" cy="62" rx="11" ry="18" fill="#2a2018" transform="rotate(20,163,62)"/>
+  <!-- Eyes -->
+  <circle cx="112" cy="74" r="6" fill="#111"/>
+  <circle cx="144" cy="74" r="6" fill="#111"/>
+  <circle cx="113" cy="73" r="2.5" fill="#fff" opacity="0.7"/>
+  <circle cx="145" cy="73" r="2.5" fill="#fff" opacity="0.7"/>
+  <!-- Snout -->
+  <ellipse cx="128" cy="92" rx="16" ry="10" fill="#3a2a1a"/>
+  <circle cx="122" cy="91" r="3.5" fill="#1a0e06"/>
+  <circle cx="134" cy="91" r="3.5" fill="#1a0e06"/>
+
+  <!-- Legs -->
+  <rect x="88" y="196" width="17" height="40" rx="5" fill="#2a2018"/>
+  <rect x="112" y="200" width="17" height="36" rx="5" fill="#2a2018"/>
+  <rect x="138" y="200" width="17" height="36" rx="5" fill="#2a2018"/>
+  <rect x="162" y="196" width="17" height="40" rx="5" fill="#2a2018"/>
+  <!-- Hooves -->
+  <rect x="86" y="230" width="21" height="10" rx="4" fill="#111"/>
+  <rect x="110" y="230" width="21" height="10" rx="4" fill="#111"/>
+  <rect x="136" y="230" width="21" height="10" rx="4" fill="#111"/>
+  <rect x="160" y="230" width="21" height="10" rx="4" fill="#111"/>
+
+  <!-- Score badge -->
+  <rect x="18" y="18" width="72" height="72" rx="12" fill="#16a34a"/>
+  <text x="54" y="56" font-family="Georgia,serif" font-size="28" font-weight="bold" fill="#fff" text-anchor="middle">82</text>
+  <text x="54" y="74" font-family="'Courier New',monospace" font-size="9" fill="#bbf7d0" text-anchor="middle" letter-spacing="1">SCORE</text>
+
+  <!-- Grain overlay -->
+  <rect width="256" height="256" rx="24" fill="#000" opacity="0.15" filter="url(#grain)"/>
+</svg>
