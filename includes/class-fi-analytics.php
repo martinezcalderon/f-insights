@@ -22,7 +22,7 @@ class FI_Analytics {
      * @return bool
      */
     private static function is_premium(): bool {
-        return FI_Premium::is_active();
+        return FI_License::is_active();
     }
 
     /**
@@ -55,11 +55,14 @@ class FI_Analytics {
                 array( '%s', '%s', '%s', '%d', '%s', '%s', '%s', '%s' )
             );
         } else {
-            // ── Free: increment unrecorded-scan counter only ─────────────────
+            // ── Free: increment scan counter, then check trial unlock ─────────
             $count = intval( get_option( self::FREE_SCAN_COUNTER, 0 ) );
             update_option( self::FREE_SCAN_COUNTER, $count + 1, false );
             // 'false' = do not autoload — only read when the admin views the
             // locked Analytics page, not on every page load.
+
+            // Unlock the 30-day trial once the threshold is reached (once, ever).
+            FI_License::maybe_unlock_trial();
         }
     }
 

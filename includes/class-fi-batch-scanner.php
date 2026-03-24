@@ -231,7 +231,7 @@ class FI_Batch_Scanner {
             return;
         }
 
-        $is_premium   = FI_Premium::is_active();
+        $is_premium   = FI_License::is_active();
         $admin_max    = min( absint( get_option( 'fi_batch_max_size', 10 ) ), self::MAX_BATCH_SIZE_HARD_CAP );
         $daily_quota  = absint( get_option( 'fi_batch_daily_quota', 50 ) );
         $quota_used   = self::get_daily_quota_used();

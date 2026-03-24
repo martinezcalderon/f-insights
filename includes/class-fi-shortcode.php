@@ -21,7 +21,7 @@ class FI_Shortcode {
         // White-label options (custom text/placeholder/icon) are premium-only.
         // If the license is no longer active, always fall back to the defaults so
         // previously saved premium values don't linger after a downgrade.
-        $is_premium        = FI_Premium::is_active();
+        $is_premium        = FI_License::is_active();
         $default_placeholder = __( 'Search a business', 'f-insights' );
         $default_btn_text    = __( 'Search Business', 'f-insights' );
         $admin_placeholder = $is_premium

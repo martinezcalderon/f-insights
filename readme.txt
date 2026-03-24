@@ -38,14 +38,16 @@ You need a Google Places API key and an Anthropic Claude API key.
 
 = Does this work without a premium license? =
 
-Yes. The free version includes the core scanner. Premium unlocks analytics, white-labeling, email reports, and more.
+Yes. The free version includes the full scanner. Run 10 organic scans through your shortcode and a 30-day trial unlocks automatically — no card, no checkout. Premium adds analytics, white-labeling, email reports, lead management, and more.
 
 == Changelog ==
 
-= 2.1.1 =
-* Freemius SDK integration
-* Multisite network support
-* Improved opt-in screen with custom messaging
+= 2.2.0 =
+* In-house license & trial system replaces third-party SDK
+* Trial unlocks automatically after 10 organic shortcode scans — no card required
+* Paid plans: Solo (1 site), Agency (3 sites), Enterprise (10 sites)
+* Lapsed subscriptions retain premium feature access; updates/support resume on renewal
+* Renewal price locked at original subscription rate
 
 = 2.0.8 =
 * Shared reports with expiry

@@ -25,110 +25,8 @@ define('FI_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FI_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('FI_PLUGIN_BASENAME', plugin_basename(__FILE__));
 
-// =============================================================================
-// FREEMIUS SDK BOOTSTRAP
-// Copied verbatim from Freemius Dashboard → SDK Integration.
-// For local testing, add to wp-config.php (remove before deploying to production):
-//   define( 'WP_FS__DEV_MODE', true );
-//   define( 'WP_FS__SKIP_EMAIL_ACTIVATION', true );
-//   define( 'WP_FS__f-insights_SECRET_KEY', 'sk_q>+X&[R>;QJg@O<.LoDl1tBo<~T^s' );
-// =============================================================================
-
-if ( ! function_exists( 'fi_fs' ) ) {
-    // Create a helper function for easy SDK access.
-    function fi_fs() {
-        global $fi_fs;
-
-        if ( ! isset( $fi_fs ) ) {
-            // Activate multisite network integration.
-            if ( ! defined( 'WP_FS__PRODUCT_24447_MULTISITE' ) ) {
-                define( 'WP_FS__PRODUCT_24447_MULTISITE', true );
-            }
-
-            // Include Freemius SDK.
-            require_once dirname( __FILE__ ) . '/freemius/start.php';
-
-            $fi_fs = fs_dynamic_init( array(
-                'id'               => '24447',
-                'slug'             => 'f-insights',
-                'type'             => 'plugin',
-                'public_key'       => 'pk_e42c9078aabff6201c719f6685396',
-                'is_premium'       => false,
-                'has_addons'       => false,
-                'has_paid_plans'   => false,
-                'is_org_compliant' => true,
-                'menu'             => array(
-                    'slug'    => 'f-insights',
-                    'contact' => false,
-                    'support' => false,
-                ),
-            ) );
-        }
-
-        return $fi_fs;
-    }
-
-    // Init Freemius.
-    fi_fs();
-    // Signal that SDK was initiated.
-    do_action( 'fi_fs_loaded' );
-}
-
-/**
- * Opt-in screen customisation.
- *
- * IMPORTANT: add_action must be called BEFORE fi_fs() initialises, OR we must
- * use did_action() to catch the case where fi_fs_loaded already fired.
- * We register on 'plugins_loaded' priority 1 which runs before our bootstrap
- * on priority 10, ensuring the listener is always attached in time.
- *
- * @see https://freemius.com/help/documentation/wordpress-sdk/opt-in-message/
- */
-if ( ! function_exists( 'fi_fs_register_optin_hooks' ) ) {
-    function fi_fs_register_optin_hooks() {
-        if ( ! function_exists( 'fi_fs' ) ) {
-            return;
-        }
-
-        // Plugin icon — points to local asset since the plugin is not yet on WordPress.org.
-        // Freemius would otherwise try to fetch it from .org and fall back to a grey box.
-        fi_fs()->add_filter( 'plugin_icon', function() {
-            return FI_PLUGIN_DIR . 'assets/img/icon.jpg';
-        } );
-
-        // Opt-in message for new users.
-        fi_fs()->add_filter( 'connect_message', function(
-            $message, $user_first_name, $product_title,
-            $user_login, $site_link, $freemius_link
-        ) {
-            return sprintf(
-                /* translators: 1: user first name, 2: plugin name (bold), 3: Freemius link */
-                __( 'Hey %1$s! Help us improve %2$s by sharing non-sensitive diagnostic data. This lets us push security & feature updates directly to you. %3$s.', 'f-insights' ),
-                $user_first_name,
-                '<b>' . $product_title . '</b>',
-                $freemius_link
-            );
-        }, 10, 6 );
-
-        // Opt-in message for existing users seeing the screen after a plugin update.
-        fi_fs()->add_filter( 'connect_message_on_update', function(
-            $message, $user_first_name, $product_title,
-            $user_login, $site_link, $freemius_link
-        ) {
-            return sprintf(
-                /* translators: 1: user first name, 2: plugin name (bold), 3: Freemius link */
-                __( 'Hey %1$s! We added opt-in telemetry to %2$s to help us fix bugs faster and ship better features. If you skip this, the plugin works exactly as before. %3$s.', 'f-insights' ),
-                $user_first_name,
-                '<b>' . $product_title . '</b>',
-                $freemius_link
-            );
-        }, 10, 6 );
-    }
-    // Hook early enough that the listener is registered before fi_fs() is called.
-    add_action( 'plugins_loaded', 'fi_fs_register_optin_hooks', 1 );
-}
 // Include required files
-require_once FI_PLUGIN_DIR . 'includes/class-fi-premium.php';
+require_once FI_PLUGIN_DIR . 'includes/class-fi-license.php';
 require_once FI_PLUGIN_DIR . 'includes/class-fi-logger.php';
 require_once FI_PLUGIN_DIR . 'includes/class-fi-crypto.php';
 require_once FI_PLUGIN_DIR . 'includes/class-fi-activator.php';
@@ -197,7 +95,7 @@ class F_Insights {
      * @return bool
      */
     private static function is_premium(): bool {
-        return FI_Premium::is_active();
+        return FI_License::is_active();
     }
     
     public function load_textdomain() {
@@ -577,14 +475,7 @@ function f_insights() {
 
 f_insights();
 
-// ── Freemius uninstall cleanup ────────────────────────────────────────────────
-// Hooked to Freemius's 'after_uninstall' action so that uninstall telemetry
-// and user feedback are sent to Freemius BEFORE our cleanup runs.
-// This replaces the uninstall.php file (which has been removed) because
-// WordPress's uninstall.php mechanism conflicts with Freemius's uninstall hook.
-//
-// Not like register_uninstall_hook(), you do NOT have to use a static function.
-fi_fs()->add_action( 'after_uninstall', 'fi_fs_uninstall_cleanup' );
+register_uninstall_hook( __FILE__, 'fi_uninstall_cleanup' );
 
 /**
  * Removes every database row and option that F! Insights creates so the site
@@ -598,8 +489,8 @@ fi_fs()->add_action( 'after_uninstall', 'fi_fs_uninstall_cleanup' );
  *
  * NOTE: User-uploaded files and WordPress core data are never touched.
  */
-if ( ! function_exists( 'fi_fs_uninstall_cleanup' ) ) :
-function fi_fs_uninstall_cleanup() {
+if ( ! function_exists( 'fi_uninstall_cleanup' ) ) :
+function fi_uninstall_cleanup() {
     global $wpdb;
 
     // ── 1. Plugin options ─────────────────────────────────────────────────────
@@ -708,6 +599,16 @@ function fi_fs_uninstall_cleanup() {
 
         // CRM webhook (v2.3+)
         'fi_crm_webhook_url',
+
+        // License & trial (v2.2+)
+        'fi_license_key',
+        'fi_license_email',
+        'fi_license_status',
+        'fi_license_plan',
+        'fi_license_expires_at',
+        'fi_trial_status',
+        'fi_trial_started_at',
+        'fi_trial_expires_at',
 
         // Internal migration flags
         'fi_migration_autoload_no',

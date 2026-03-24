@@ -1153,7 +1153,7 @@ Manage settings: " . admin_url('admin.php?page=f-insights') . "
      * @return bool
      */
     private function is_premium(): bool {
-        return FI_Premium::is_active();
+        return FI_License::is_active();
     }
     
     /**
@@ -1913,7 +1913,7 @@ Manage settings: " . admin_url('admin.php?page=f-insights') . "
         }
 
         // Premium-only tabs require an active license.
-        if ( $tab === 'white-label' && ! FI_Premium::is_active() ) {
+        if ( $tab === 'white-label' && ! FI_License::is_active() ) {
             wp_send_json_error( array( 'message' => __( 'Premium license required.', 'f-insights' ) ) );
         }
 
@@ -2395,7 +2395,7 @@ Manage settings: " . admin_url('admin.php?page=f-insights') . "
             wp_send_json_error( array( 'message' => __( 'Unauthorized', 'f-insights' ) ) );
         }
 
-        if ( ! FI_Premium::is_active() ) {
+        if ( ! FI_License::is_active() ) {
             wp_send_json_error( array( 'message' => __( 'Market Intelligence requires a paid plan.', 'f-insights' ) ) );
         }
 

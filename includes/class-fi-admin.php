@@ -15,7 +15,7 @@ class FI_Admin {
      * @return bool
      */
     private static function is_premium(): bool {
-        return FI_Premium::is_active();
+        return FI_License::is_active();
     }
 
     /**
@@ -1097,60 +1097,107 @@ class FI_Admin {
     }
 
     /**
-     * Render Premium Upsell (for free users)
+     * Render the trial / upgrade gate for free users on the White-Label tab.
+     *
+     * States:
+     *  – Scans still needed  → show progress toward the trial unlock.
+     *  – Trial lapsed        → settings are saved; prompt to subscribe.
+     *  – Cancelled / default → same as lapsed (no history to reference).
      */
     private static function render_premium_upsell() {
+        $scans_left  = FI_License::scans_until_trial();
+        $scan_count  = FI_License::get_scan_count();
+        $trial_lapsed = ( get_option( 'fi_trial_status', '' ) === 'lapsed' );
         ?>
         <div class="fi-ghost-lock" style="max-width:666px; margin:40px auto; text-align:center; background:#fff; border:2px solid #000; padding:40px; box-shadow:6px 6px 0 #000;">
 
-            <!-- Three outcome pillars — what the agency owner actually wants -->
-            <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:0; border:2px solid #000; margin-bottom:28px; text-align:left;">
+            <?php if ( $trial_lapsed ) : ?>
 
-                <div style="padding:20px 18px; border-right:2px solid #000;">
-                    <div style="font-size:22px; margin-bottom:8px;">📬</div>
-                    <div style="font-size:13px; font-weight:700; color:#000; margin-bottom:6px; line-height:1.3;">
-                        <?php _e( 'Clients get reports that look like you built them', 'f-insights' ); ?>
+                <!-- ── Trial lapsed ── -->
+                <div style="font-size:40px; margin-bottom:16px;">⏳</div>
+                <h2 style="margin:0 0 12px; font-size:20px; font-weight:700;">
+                    <?php _e( 'Your trial ended. Your settings are still here.', 'f-insights' ); ?>
+                </h2>
+                <p style="font-size:14px; color:#444; margin-bottom:12px; line-height:1.7; max-width:460px; margin-left:auto; margin-right:auto;">
+                    <?php _e( 'Everything you configured is saved and waiting — logo, colours, button text, all of it. Subscribe and it picks up exactly where you left off.', 'f-insights' ); ?>
+                </p>
+                <p style="font-size:13px; color:#666; margin-bottom:28px; line-height:1.6;">
+                    <?php _e( 'Your renewal price is locked at the rate you originally subscribed at.', 'f-insights' ); ?>
+                </p>
+                <a href="https://fricking.website/pricing" target="_blank" class="button button-primary button-hero">
+                    <?php _e( 'Reactivate &rarr;', 'f-insights' ); ?>
+                </a>
+
+            <?php else : ?>
+
+                <!-- ── Progress toward trial unlock ── -->
+
+                <!-- Three outcome pillars -->
+                <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:0; border:2px solid #000; margin-bottom:28px; text-align:left;">
+
+                    <div style="padding:20px 18px; border-right:2px solid #000;">
+                        <div style="font-size:22px; margin-bottom:8px;">📬</div>
+                        <div style="font-size:13px; font-weight:700; color:#000; margin-bottom:6px; line-height:1.3;">
+                            <?php _e( 'Clients get reports that look like you built them', 'f-insights' ); ?>
+                        </div>
+                        <div style="font-size:12px; color:#555; line-height:1.5;">
+                            <?php _e( 'Your logo, your colours, your sign-off. No attribution anywhere.', 'f-insights' ); ?>
+                        </div>
                     </div>
-                    <div style="font-size:12px; color:#555; line-height:1.5;">
-                        <?php _e( 'Your logo, your colours, your sign-off. No "Powered by" anywhere.', 'f-insights' ); ?>
+
+                    <div style="padding:20px 18px; border-right:2px solid #000;">
+                        <div style="font-size:22px; margin-bottom:8px;">🎯</div>
+                        <div style="font-size:13px; font-weight:700; color:#000; margin-bottom:6px; line-height:1.3;">
+                            <?php _e( 'Leads arrive pre-qualified with their pain points listed', 'f-insights' ); ?>
+                        </div>
+                        <div style="font-size:12px; color:#555; line-height:1.5;">
+                            <?php _e( 'Score, contact info, and the exact issues to open with.', 'f-insights' ); ?>
+                        </div>
                     </div>
+
+                    <div style="padding:20px 18px;">
+                        <div style="font-size:22px; margin-bottom:8px;">📈</div>
+                        <div style="font-size:13px; font-weight:700; color:#000; margin-bottom:6px; line-height:1.3;">
+                            <?php _e( 'Every scan on your site builds your pipeline automatically', 'f-insights' ); ?>
+                        </div>
+                        <div style="font-size:12px; color:#555; line-height:1.5;">
+                            <?php _e( 'New, contacted, closed. No spreadsheet needed.', 'f-insights' ); ?>
+                        </div>
+                    </div>
+
                 </div>
 
-                <div style="padding:20px 18px; border-right:2px solid #000;">
-                    <div style="font-size:22px; margin-bottom:8px;">🎯</div>
-                    <div style="font-size:13px; font-weight:700; color:#000; margin-bottom:6px; line-height:1.3;">
-                        <?php _e( 'Leads arrive pre-qualified with their pain points listed', 'f-insights' ); ?>
+                <?php if ( $scans_left > 0 ) : ?>
+                    <!-- Progress counter -->
+                    <div style="background:#f5f5f3; border:2px solid #000; padding:20px; margin-bottom:24px;">
+                        <div style="font-size:48px; font-weight:700; line-height:1; color:#000; font-family:monospace;">
+                            <?php echo esc_html( $scan_count ); ?><span style="font-size:24px; color:#888;">/10</span>
+                        </div>
+                        <div style="font-size:13px; font-weight:600; color:#000; margin-top:8px;">
+                            <?php
+                            echo esc_html( sprintf(
+                                _n(
+                                    '%d more organic scan and these settings unlock — free, for 30 days.',
+                                    '%d more organic scans and these settings unlock — free, for 30 days.',
+                                    $scans_left,
+                                    'f-insights'
+                                ),
+                                $scans_left
+                            ) );
+                            ?>
+                        </div>
                     </div>
-                    <div style="font-size:12px; color:#555; line-height:1.5;">
-                        <?php _e( 'Score, contact info, and the exact issues to open with, in your inbox the moment they scan.', 'f-insights' ); ?>
-                    </div>
-                </div>
+                    <p style="font-size:13px; color:#666; margin-bottom:0; line-height:1.6;">
+                        <?php _e( 'No card. No checkout. Visitors scan your shortcode, you earn access.', 'f-insights' ); ?>
+                    </p>
+                <?php else : ?>
+                    <!-- Threshold reached but page somehow visible — should not normally occur -->
+                    <p style="font-size:14px; color:#444; margin-bottom:0; line-height:1.7;">
+                        <?php _e( 'You\'ve hit 10 scans. Refresh the page to see your trial dashboard.', 'f-insights' ); ?>
+                    </p>
+                <?php endif; ?>
 
-                <div style="padding:20px 18px;">
-                    <div style="font-size:22px; margin-bottom:8px;">📈</div>
-                    <div style="font-size:13px; font-weight:700; color:#000; margin-bottom:6px; line-height:1.3;">
-                        <?php _e( 'Every scan on your site builds your pipeline automatically', 'f-insights' ); ?>
-                    </div>
-                    <div style="font-size:12px; color:#555; line-height:1.5;">
-                        <?php _e( 'Track who\'s new, who you\'ve contacted, what closed. No spreadsheet needed.', 'f-insights' ); ?>
-                    </div>
-                </div>
-
-            </div>
-
-            <h2 style="margin:0 0 10px; font-size:20px; font-weight:700;">
-                <?php _e( 'Your scanner. Your brand. Your leads.', 'f-insights' ); ?>
-            </h2>
-            <p style="font-size:14px; color:#444; margin-bottom:24px; line-height:1.7; max-width:480px; margin-left:auto; margin-right:auto;">
-                <?php _e( 'Everything on this tab unlocks the moment you upgrade; no setup required, no code to write.', 'f-insights' ); ?>
-            </p>
-
-            <a href="https://fricking.website/wp-admin/admin.php?billing_cycle=annual&page=f-insights-pricing" target="_blank" class="button button-primary button-hero">
-                <?php _e( '30-Day Free Trial, $1,987/year', 'f-insights' ); ?>
-            </a>
-            <a href="https://fricking.website/wp-admin/admin.php?billing_cycle=annual&page=f-insights-pricing" target="_blank" class="button button-secondary button-hero" style="margin-left:10px;">
-                <?php _e( '30-Day Free Trial, $197/month', 'f-insights' ); ?>
-            </a>
+            <?php endif; ?>
 
         </div>
         <?php
@@ -1709,19 +1756,74 @@ class FI_Admin {
     }
 
     /**
-     * Premium gate shown to free users on the Analytics page.
-     * Shows the real unrecorded scan count to create gentle FOMO.
+     * Trial / upgrade gate shown to free users on the Analytics page.
+     *
+     * States:
+     *  – No scans yet        → explain what will be recorded; show scan CTA.
+     *  – Scans still needed  → show real count + how many remain until trial.
+     *  – Trial lapsed        → show count they're locked out of; prompt renewal.
      */
     private static function render_analytics_premium_gate() {
-        $scan_count = FI_Analytics::get_free_scan_count();
+        $scan_count  = FI_License::get_scan_count();
+        $scans_left  = FI_License::scans_until_trial();
+        $trial_lapsed = ( get_option( 'fi_trial_status', '' ) === 'lapsed' );
         ?>
         <div class="fi-ghost-lock" style="max-width:666px; margin:40px auto; text-align:center; background:#fff; border:2px solid #000; padding:40px; box-shadow:6px 6px 0 #000;">
 
-            <?php if ( $scan_count > 0 ) : ?>
-                <!-- Scan count — the number does the heavy lifting -->
+            <?php if ( $trial_lapsed ) : ?>
+
+                <!-- ── Trial lapsed ── -->
+                <?php if ( $scan_count > 0 ) : ?>
+                    <div style="background:#f5f5f3; border:2px solid #000; padding:20px; margin-bottom:28px;">
+                        <div style="font-size:52px; font-weight:700; line-height:1; color:#000; font-family:monospace;">
+                            <?php echo esc_html( number_format( $scan_count ) ); ?>
+                        </div>
+                        <div style="font-size:14px; font-weight:600; color:#000; margin-top:6px;">
+                            <?php
+                            echo esc_html( sprintf(
+                                _n(
+                                    'scan recorded. Locked until you reactivate.',
+                                    'scans recorded. Locked until you reactivate.',
+                                    $scan_count,
+                                    'f-insights'
+                                ),
+                                $scan_count
+                            ) );
+                            ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+                <h2 style="margin:0 0 12px; font-size:20px; font-weight:700;">
+                    <?php _e( 'Your trial ended. Your data didn\'t go anywhere.', 'f-insights' ); ?>
+                </h2>
+                <p style="font-size:14px; color:#444; margin-bottom:28px; line-height:1.7; max-width:460px; margin-left:auto; margin-right:auto;">
+                    <?php _e( 'Every scan, lead, and market data point collected during your trial is still here. Subscribe to unlock it. Your renewal price is locked at your original rate.', 'f-insights' ); ?>
+                </p>
+                <a href="https://fricking.website/pricing" target="_blank" class="button button-primary button-hero">
+                    <?php _e( 'Reactivate &rarr;', 'f-insights' ); ?>
+                </a>
+
+            <?php elseif ( $scan_count === 0 ) : ?>
+
+                <!-- ── No scans yet ── -->
+                <span class="dashicons dashicons-chart-line" style="font-size:40px; width:40px; height:40px; color:#000; margin-bottom:16px; display:block;"></span>
+                <h2 style="margin:0 0 12px; font-size:20px; font-weight:700;">
+                    <?php _e( 'Your market is out there. Start scanning it.', 'f-insights' ); ?>
+                </h2>
+                <p style="font-size:14px; color:#444; margin-bottom:16px; line-height:1.7; max-width:460px; margin-left:auto; margin-right:auto;">
+                    <?php _e( 'Every business scanned through your shortcode becomes a data point — category, score, pain points, contact info. After 10 organic scans, this whole dashboard unlocks free for 30 days.', 'f-insights' ); ?>
+                </p>
+                <p style="font-size:13px; color:#666; margin-bottom:0;">
+                    <?php _e( 'No card. No checkout. Just put the scanner in front of people and let them use it.', 'f-insights' ); ?>
+                </p>
+
+            <?php else : ?>
+
+                <!-- ── Scans accumulating, trial not yet unlocked ── -->
                 <div style="background:#f5f5f3; border:2px solid #000; padding:20px; margin-bottom:28px;">
                     <div style="font-size:52px; font-weight:700; line-height:1; color:#000; font-family:monospace;">
-                        <?php echo esc_html( number_format( $scan_count ) ); ?>
+                        <?php echo esc_html( number_format( $scan_count ) ); ?><span style="font-size:26px; color:#888;">/10</span>
                     </div>
                     <div style="font-size:14px; font-weight:600; color:#000; margin-top:6px;">
                         <?php
@@ -1739,45 +1841,34 @@ class FI_Admin {
                     <div style="font-size:13px; color:#555; margin-top:8px; line-height:1.5;">
                         <?php
                         if ( $scan_count === 1 ) {
-                            _e( 'You don\'t know who they are. They know exactly where they stand.', 'f-insights' );
-                        } elseif ( $scan_count < 10 ) {
-                            _e( 'You don\'t know who any of them are. They know exactly where they stand.', 'f-insights' );
-                        } elseif ( $scan_count < 50 ) {
-                            _e( 'That\'s a dataset. You don\'t know who scanned, what industries they\'re in, or what their biggest problems are. Yet.', 'f-insights' );
+                            _e( 'One scan. You don\'t know who they are yet. They know exactly where they stand.', 'f-insights' );
                         } else {
-                            _e( 'That\'s a real market signal — and right now it\'s just a number to you.', 'f-insights' );
+                            echo esc_html( sprintf(
+                                _n(
+                                    '%d more scan and this whole dashboard unlocks for 30 days.',
+                                    '%d more scans and this whole dashboard unlocks for 30 days.',
+                                    $scans_left,
+                                    'f-insights'
+                                ),
+                                $scans_left
+                            ) );
                         }
                         ?>
                     </div>
                 </div>
-            <?php else : ?>
-                <span class="dashicons dashicons-chart-line" style="font-size:40px; width:40px; height:40px; color:#000; margin-bottom:16px; display:block;"></span>
+
+                <h2 style="margin:0 0 12px; font-size:20px; font-weight:700;">
+                    <?php _e( 'The data is here. You just can\'t see it yet.', 'f-insights' ); ?>
+                </h2>
+                <p style="font-size:14px; color:#444; margin-bottom:16px; line-height:1.7; max-width:460px; margin-left:auto; margin-right:auto;">
+                    <?php _e( 'Every scan records the business name, category, score, and pain points. As the picture fills in — industries, gaps, patterns — it becomes the kind of market intelligence that makes your pitch land differently.', 'f-insights' ); ?>
+                </p>
+                <p style="font-size:13px; color:#666; margin-bottom:0;">
+                    <?php _e( 'No card. No checkout. Keep scanning.', 'f-insights' ); ?>
+                </p>
+
             <?php endif; ?>
 
-            <h2 style="margin:0 0 10px; font-size:20px; font-weight:700;">
-                <?php _e( 'Ready to turn scans into conversations?', 'f-insights' ); ?>
-            </h2>
-
-            <p style="font-size:14px; color:#444; margin-bottom:20px; line-height:1.7;">
-                <?php _e( 'Upgrade and you\'ll know who scanned, what they need, and how to reach them, before your first conversation. But the leads are just the start.', 'f-insights' ); ?>
-            </p>
-
-            <p style="font-size:14px; color:#444; margin-bottom:28px; line-height:1.7;">
-                <?php
-                if ( $scan_count >= 10 ) {
-                    _e( 'Every scan you\'ve collected is a data point in a market picture you haven\'t seen yet. What industries are scanning? Where are the gaps? What does your market look like compared to your competitors\'? That\'s the intelligence that goes into a pitch deck, landing page, campaign, or positioning conversation that makes you the obvious choice.', 'f-insights' );
-                } else {
-                    _e( 'As scans accumulate, so does your market picture, what industries are showing up, where the gaps are, what pain points keep surfacing. That\'s the kind of intelligence that goes into a pitch deck, landing page, campaign, or positioning conversation that makes you the obvious choice.', 'f-insights' );
-                }
-                ?>
-            </p>
-
-            <a href="https://fricking.website/pricing" target="_blank" class="button button-primary button-hero">
-                <?php _e( '30-Day Free Trial, $1,987/year', 'f-insights' ); ?>
-            </a>
-            <a href="https://fricking.website/pricing#lifetime" target="_blank" class="button button-secondary button-hero" style="margin-left:10px;">
-                <?php _e( '30-Day Free Trial, $197/month', 'f-insights' ); ?>
-            </a>
         </div>
         <?php
     }
